@@ -1,10 +1,10 @@
 // React
-import React, { Component } from "react";
+import React from "react"
 
 // MDB
 import {
   MDBFooter
-} from 'mdbreact';
+} from 'mdbreact'
 
 class Footer extends React.Component{
     render(){
