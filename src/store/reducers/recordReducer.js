@@ -11,11 +11,13 @@ const recordReducer = (state = initState, action) => {
     switch (action.type) {
         case "CREATE_RECORD":
             console.log('created record', action.record);
-            break;
+            return state;
+        case "CREATE_RECORD_ERROR":
+            console.log('create record error', action.err);
+            return state;
         default:
-            break;
+            return state;
     }
-    return state;
 }
 
 export default recordReducer;

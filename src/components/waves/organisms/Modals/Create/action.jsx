@@ -10,16 +10,9 @@ class CreateAction extends React.Component {
     state = {
         date: "",
         time: "",
-        timestamp_added: "",
         type: "ACTION",
         duration: "",
         sector: ""
-    }
-
-    getTimestamp = () => {
-        if (!Date.now) {
-            Date.now = function() { return new Date().getTime(); }
-        }
     }
 
     getTime = () => {
@@ -41,7 +34,6 @@ class CreateAction extends React.Component {
         this.setState({
             date: this.getDate(),
             time: this.getTime(),
-            timestamp_added: this.getTimestamp(),
             duration: 2.5,
             sector: "TV"
         }, () => this.props.createRecord(this.state))

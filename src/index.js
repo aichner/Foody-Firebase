@@ -22,15 +22,13 @@ import fbConfig from './config/fbConfig'
 
 // Create Redux data-store and store it in store
 // Apply thunk middle ware
-const store = createStore(
-    rootReducer,
+const store = createStore(rootReducer,
     compose(
         applyMiddleware(
-            thunk.withExtraArguments(
-                {
-                    getFirebase, getFirestore
-                }
-            )
+            thunk.withExtraArgument({
+                getFirebase,
+                getFirestore
+            })
         ),
         reduxFirestore(fbConfig),
         reactReduxFirebase(fbConfig)
