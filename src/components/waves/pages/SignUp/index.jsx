@@ -8,6 +8,23 @@ import { Link } from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact';
 
 class SignUp extends React.Component{
+
+   state = {
+        name: "",
+        email: "",
+        password: "",
+        password2: ""
+    }
+
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+    }
+
     render(){
         return(
             <div>
@@ -21,15 +38,17 @@ class SignUp extends React.Component{
                             <MDBCardBody>
                                 <MDBRow className="justify-content-center">
                                     <MDBCol md="6">
-                                        <form>
+                                        <form onSubmit={this.handleSubmit}>
                                             <p className="h4 text-center mb-4">Sign up</p>
                                             <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                                             Your name
                                             </label>
                                             <input
                                             type="text"
+                                            name="name"
                                             id="defaultFormRegisterNameEx"
                                             className="form-control"
+                                            onChange={this.handleChange}
                                             />
                                             <br />
                                             <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
@@ -37,20 +56,10 @@ class SignUp extends React.Component{
                                             </label>
                                             <input
                                             type="email"
+                                            name="email"
                                             id="defaultFormRegisterEmailEx"
                                             className="form-control"
-                                            />
-                                            <br />
-                                            <label
-                                            htmlFor="defaultFormRegisterConfirmEx"
-                                            className="grey-text"
-                                            >
-                                            Confirm your email
-                                            </label>
-                                            <input
-                                            type="email"
-                                            id="defaultFormRegisterConfirmEx"
-                                            className="form-control"
+                                            onChange={this.handleChange}
                                             />
                                             <br />
                                             <label
@@ -61,12 +70,28 @@ class SignUp extends React.Component{
                                             </label>
                                             <input
                                             type="password"
+                                            name="password"
                                             id="defaultFormRegisterPasswordEx"
                                             className="form-control"
+                                            onChange={this.handleChange}
+                                            />
+                                            <br />
+                                            <label
+                                            htmlFor="defaultFormRegisterPasswordEx2"
+                                            className="grey-text"
+                                            >
+                                            Repeat your password
+                                            </label>
+                                            <input
+                                            type="password"
+                                            name="password2"
+                                            id="defaultFormRegisterPasswordEx2"
+                                            className="form-control"
+                                            onChange={this.handleChange}
                                             />
                                             <div className="text-center mt-4">
                                                 <MDBBtn color="success" type="submit">
-                                                    <i class="fas fa-chevron-right pr-2"></i>Register
+                                                    <i className="fas fa-chevron-right pr-2"></i>Register
                                                 </MDBBtn>
                                             </div>
                                             <p className="text-muted text-center mt-3">Already a member? <Link to="/" >Login</Link></p>
