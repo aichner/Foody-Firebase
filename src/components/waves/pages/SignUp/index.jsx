@@ -5,7 +5,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //MDB
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact';
+import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact';
 
 class SignUp extends React.Component{
 

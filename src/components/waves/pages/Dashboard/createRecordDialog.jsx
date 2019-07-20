@@ -29,7 +29,7 @@ class CreateRecordDialog extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records } = this.props;
+        //const { records } = this.props;
 
         return(
             <div>

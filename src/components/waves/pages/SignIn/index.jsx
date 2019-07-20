@@ -8,12 +8,9 @@ import { Link } from 'react-router-dom'
 import {
     MDBEdgeHeader,
     MDBFreeBird,
-    MDBContainer,
     MDBCol,
     MDBRow,
     MDBCardBody,
-    MDBIcon,
-    MDBNavLink,
     MDBBtn
 } from "mdbreact";
 
