@@ -1,8 +1,9 @@
 // React
 import React from 'react'
 
-class SignIn extends React.Component{
+class Day extends React.Component{
 
+    // Get url param
     getDate = () => {
         let date = this.props.match.params.date;
 
@@ -27,4 +28,4 @@ class SignIn extends React.Component{
     }
 }
 
-export default SignIn;
+export default Day;

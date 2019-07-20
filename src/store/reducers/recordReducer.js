@@ -8,6 +8,13 @@ const initState = {
 }
 
 const recordReducer = (state = initState, action) => {
+    switch (action.type) {
+        case "CREATE_RECORD":
+            console.log('created record', action.record);
+            break;
+        default:
+            break;
+    }
     return state;
 }
 

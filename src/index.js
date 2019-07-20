@@ -7,14 +7,16 @@ import "./index.css"
 import App from "./App"
 
 // Redux
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import rootReducer from './store/reducers/rootReducer'
 
 import registerServiceWorker from './registerServiceWorker';
 
 // Create Redux data-store and store it in store
-const store = createStore(rootReducer);
+// Apply thunk middle ware
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
 
