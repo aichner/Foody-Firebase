@@ -13,8 +13,8 @@ import {
     MDBContainer,
 } from 'mdbreact';
 
-// Logo
-import { ReactComponent as Logo } from "./logo.svg";
+// Components
+import Branding from './branding'
 
 class SignedOutNavItems extends React.Component{
     state = {
@@ -30,10 +30,7 @@ class SignedOutNavItems extends React.Component{
         return(
             <MDBNavbar color="success-color" dark expand="md" fixed="top" scrolling>
                 <MDBContainer>
-                    <MDBNavbarBrand href="/">
-                    <Logo style={{ height: "2.5rem", width: "2.5rem" }} />
-                    MDB React
-                    </MDBNavbarBrand>
+                    <Branding/>
                     <MDBNavbarToggler
                     onClick={this.toggleCollapse}
                     />
