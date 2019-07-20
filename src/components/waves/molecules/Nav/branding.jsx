@@ -1,19 +1,12 @@
 // React
-import React, { Component } from "react";
+import React from "react";
 
 // Logo
 import { ReactComponent as Logo } from "./logo.svg";
 
 // MDB
 import {
-    MDBNavbarNav,
-    MDBNavItem,
-    MDBNavLink,
-    MDBNavbar,
     MDBNavbarBrand,
-    MDBNavbarToggler,
-    MDBCollapse,
-    MDBContainer,
 } from 'mdbreact';
 
 class SignedInNavItems extends React.Component{
