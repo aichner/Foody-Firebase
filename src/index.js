@@ -13,7 +13,7 @@ import rootReducer from './store/reducers/rootReducer'
 
 import registerServiceWorker from './registerServiceWorker';
 
-// Create Redux store and store it in store
+// Create Redux data-store and store it in store
 const store = createStore(rootReducer);
 
 ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
