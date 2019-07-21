@@ -1,31 +1,164 @@
 // React
 import React from 'react'
 
+// Fade In Animation
+import FadeIn from 'react-fade-in'
+
+// React Router
+import { Redirect } from 'react-router-dom'
+
+// MDB
+import { 
+    MDBContainer,
+    MDBNavLink,
+    MDBIcon,
+    MDBNavItem,
+    MDBTabContent,
+    MDBNav,
+    MDBBadge,
+ } from "mdbreact";
+
 // Redux
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+
+// Firestore
+import { firestoreConnect } from 'react-redux-firebase'
+
+// Dialogs (Modals)
+import CreateTabDialog from './createTabDialog'
 
 // Components
-import CreateRecordDialog from './createRecordDialog'
+import Tab from '../../molecules/Tab'
+import TabDashboard from "../../organisms/Tabs/Dashboard"
+
+// Images
+import "./images.scss";
+
+// CSS
+import "./dashboard.scss";
 
 class Dashboard extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            activeItem: 0,
+            activeItemPills: 0,
+            activeItemVerticalPills: 0,
+            activeItemOuterTabs: 0,
+            activeItemInnerPills: 0,
+            activeItemClassicTabs1: 0,
+            activeItemClassicTabs2: 0
+        }
+    }
+
+    toggleClassicTabs1 = tab => e => {
+        if (this.state.activeItemClassicTabs1 !== tab) {
+        this.setState({
+            activeItemClassicTabs1: tab
+        });
+        }
+    }
 
     render(){
         // Get records from Regex Reducer
-        //const { records } = this.props;
+        const { records, tabs, auth, profile } = this.props;
 
-        return(
-            <div>
-                <h1>Dashboard</h1>
-                <CreateRecordDialog />
-            </div>
-        )
+        /* Route Guarding
+         * If user is not logged in, redirect him/her to the login page
+         */
+        if(!auth.uid) return <Redirect to="/login"/> 
+
+        if(profile.tier !== undefined){
+            return(
+                <FadeIn>
+                <div className="foody">
+                    <div className="banner img-walking" ></div>
+                    <div className="greeting text-center py-3">
+                        <h2>Hallo {profile.first_name}!</h2>
+                        {(() => {
+                            // Conditionally render tier badge
+                            switch(profile.tier) {
+                            case 0:
+                                return <MDBBadge color="success">Basic</MDBBadge>;
+                            case 1:
+                                return <MDBBadge color="purple">Personal</MDBBadge>;
+                            case 2:
+                                return  <MDBBadge color="warning">Family<MDBIcon icon="crown" className="pl-2" /></MDBBadge>;
+                            default:
+                                return null;
+                            }
+                        })()}
+                    </div>
+                    <MDBContainer>
+                        <div className="classic-tabs">
+                            <MDBNav classicTabs color="white">
+                            {
+                                tabs && tabs.map((tab, i) => {
+                                    return(
+                                        <MDBNavLink
+                                        key={i}
+                                        to="#"
+                                        
+                                        className={this.state.activeItemClassicTabs1 === i ? "font-weight-bold active green-text" : "font-weight-bold text-dark"}
+                                        onClick={this.toggleClassicTabs1(i)}
+                                        >
+                                            <MDBIcon icon={tab.icon} className="pr-2" />{tab.title}
+                                        </MDBNavLink>
+                                    )
+                                })
+                            }
+                            <MDBNavItem>
+                                <CreateTabDialog />
+                            </MDBNavItem>
+                            </MDBNav>
+                            <MDBTabContent
+                            activeItem={this.state.activeItemClassicTabs1}
+                            className="pt-3"
+                            >
+                                {
+                                    tabs && tabs.map((tab, i) => {
+                                        return(
+                                            <Tab key={i} tabId={i}>
+                                                {
+                                                    tab.title === "Dashboard" &&
+                                                    <TabDashboard />
+                                                }
+                                                <h2>Tab {i}</h2>
+                                            </Tab>
+                                        )
+                                    })
+                                }
+                            </MDBTabContent>
+                        </div>
+                    </MDBContainer>
+                </div>
+                </FadeIn>
+            )
+        } else {
+            return null;
+        }
+        
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        record: state.record.records
+        records: state.firestore.ordered.records,
+        tabs: state.firestore.ordered.tabs,
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {
+            collection: 'records'
+        },
+        {
+            collection: 'tabs'
+        }
+    ])
+)(Dashboard);

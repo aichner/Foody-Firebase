@@ -2,7 +2,13 @@
 import React from "react";
 
 // React router
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+
+// Redux
+import { connect } from 'react-redux'
+
+// Actions
+import { signIn } from '../../../../store/actions/authActions'
 
 // MDB
 import {
@@ -11,7 +17,8 @@ import {
     MDBCol,
     MDBRow,
     MDBCardBody,
-    MDBBtn
+    MDBBtn,
+    MDBAlert,
 } from "mdbreact";
 
 class SignIn extends React.Component {
@@ -26,11 +33,23 @@ class SignIn extends React.Component {
     }
 
     handleSubmit = (e) => {
+        // Prevent page from reloading
         e.preventDefault();
-        console.log(this.state);
+        // Validation
+        e.target.className = "needs-validation was-validated";
+        // Sign user in
+        this.props.signIn(this.state);
     }
 
     render() {
+        const { authError, auth } = this.props;
+
+         /* Redirect to Dashboard
+         * If user is already logged in, redirect to Dashboard
+         * This doubles as a neat way to redirect the user directly after login
+         */
+        if(auth.uid !== undefined) return <Redirect to="/dashboard"/> 
+
         return (
         <div>
             <MDBEdgeHeader color="green lighten-3" />
@@ -43,8 +62,15 @@ class SignIn extends React.Component {
                         <MDBCardBody>
                             <MDBRow className="justify-content-center">
                                 <MDBCol md="6">
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
                                         <p className="h4 text-center mb-4">Sign in</p>
+                                        {
+                                            authError && 
+                                                <MDBAlert color="danger" >
+                                                    {authError}
+                                                </MDBAlert>
+                                        }
+                                        
                                         <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                                         Your email
                                         </label>
@@ -53,7 +79,11 @@ class SignIn extends React.Component {
                                         id="defaultFormLoginEmailEx"
                                         className="form-control"
                                         onChange={this.handleChange}
+                                        required
                                         />
+                                        <div className="invalid-feedback">
+                                            Please enter an E-Mail
+                                        </div>
                                         <br />
                                         <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
                                         Your password
@@ -63,11 +93,15 @@ class SignIn extends React.Component {
                                         id="defaultFormLoginPasswordEx"
                                         className="form-control"
                                         onChange={this.handleChange}
+                                        required
                                         />
+                                        <div className="invalid-feedback">
+                                            Please enter a password
+                                        </div>
                                         <div className="text-center mt-4">
                                             <MDBBtn color="success" type="submit"><i className="fas fa-key pr-2"></i>Login</MDBBtn>
                                         </div>
-                                        <p className="text-muted text-center mt-3">Not a member yet? No problem, just <Link to="/join">join us</Link>!</p>
+                                        <p className="text-muted text-center mt-3">Not a member yet? No problem, just <Link to="/join"><strong>join us</strong></Link>!</p>
                                     </form>
                                 </MDBCol>
                             </MDBRow>
@@ -80,4 +114,18 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        authErrorDetails: state.auth.authErrorDetails,
+        auth: state.firebase.auth
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

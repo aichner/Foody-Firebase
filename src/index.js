@@ -18,7 +18,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 
 // Firebase config
-import fbConfig from './config/fbConfig'
+import fbInit from './config/fbInit'
 
 // Create Redux data-store and store it in store
 // Apply thunk middle ware
@@ -26,15 +26,21 @@ const store = createStore(rootReducer,
     compose(
         applyMiddleware(
             thunk.withExtraArgument({
-                getFirebase,
-                getFirestore
+                getFirebase, // Firebase
+                getFirestore // Cloud Database
             })
         ),
-        reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
+        reduxFirestore(fbInit),
+        reactReduxFirebase(fbInit, {
+            useFirestoreForProfile: true, // Sync user data to user profile
+            userProfile: 'users', // Tell Redux Firebase where our users are stored
+            attachAuthIsReady: true // Enable firebase initializing before DOM rendering
+        })
     )
 );
 
-ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
-
-registerServiceWorker();
+// Wait until firebase is initialized, then render the DOM
+store.firebaseAuthIsReady.then(() => {
+    ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
+    registerServiceWorker();
+})

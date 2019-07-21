@@ -2,7 +2,7 @@
 import React from "react";
 
 // Logo
-import { ReactComponent as Logo } from "./logo.svg";
+import { ReactComponent as Logo } from "../../../../assets/logo.svg";
 
 // MDB
 import {
@@ -22,8 +22,7 @@ class SignedInNavItems extends React.Component{
     render(){
         return(
             <MDBNavbarBrand href="/">
-                <Logo style={{ height: "2.5rem", width: "2.5rem" }} />
-                Foody
+                <Logo style={{ height: "2.5rem", width: "5rem" }} />
             </MDBNavbarBrand>
         )
     }

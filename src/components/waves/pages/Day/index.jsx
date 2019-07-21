@@ -1,6 +1,12 @@
 // React
 import React from 'react'
 
+// React Router
+import { Redirect } from 'react-router-dom'
+
+// Redux
+import { connect } from 'react-redux'
+
 class Day extends React.Component{
 
     // Get url param
@@ -21,6 +27,13 @@ class Day extends React.Component{
     }
 
     render(){
+        const { auth } = this.props;
+
+        /* Route Guarding
+        * If user is not logged in, redirect him/her to the login page
+        */
+        if(!auth.uid) return <Redirect to="/login"/> 
+
         this.getDate()
         return(
             <h1>Day</h1>
@@ -28,4 +41,10 @@ class Day extends React.Component{
     }
 }
 
-export default Day;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(Day);
