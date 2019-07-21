@@ -95,7 +95,6 @@ class Dashboard extends React.Component{
                             <MDBNav classicTabs color="white">
                             {
                                 tabs && tabs.map((tab, i) => {
-                                    console.log(this.state.activeItemClassicTabs1 === i)
                                     return(
                                         <MDBNavLink
                                         key={i}
@@ -119,7 +118,6 @@ class Dashboard extends React.Component{
                             >
                                 {
                                     tabs && tabs.map((tab, i) => {
-                                        console.log(this.state.activeItemClassicTabs1 === i)
                                         return(
                                             <Tab key={i} tabId={i}>
                                                 {
