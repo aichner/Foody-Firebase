@@ -18,7 +18,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 
 // Firebase config
-import fbConfig from './config/fbConfig'
+import fbInit from './config/fbInit'
 
 // Create Redux data-store and store it in store
 // Apply thunk middle ware
@@ -30,8 +30,8 @@ const store = createStore(rootReducer,
                 getFirestore
             })
         ),
-        reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
+        reduxFirestore(fbInit),
+        reactReduxFirebase(fbInit)
     )
 );
 
