@@ -31,10 +31,14 @@ const store = createStore(rootReducer,
             })
         ),
         reduxFirestore(fbInit),
-        reactReduxFirebase(fbInit)
+        reactReduxFirebase(fbInit, {
+            attachAuthIsReady: true
+        })
     )
 );
 
-ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
-
-registerServiceWorker();
+// Wait until firebase is initialized, then render the DOM
+store.firebaseAuthIsReady.then(() => {
+    ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
+    registerServiceWorker();
+})
