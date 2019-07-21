@@ -3,6 +3,10 @@ import React from 'react'
 
 // Redux
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+
+// Firestore
+import { firestoreConnect } from 'react-redux-firebase'
 
 // Components
 import CreateRecordDialog from './createRecordDialog'
@@ -11,7 +15,8 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        //const { records } = this.props;
+        const { records } = this.props;
+        console.log(records);
 
         return(
             <div>
@@ -24,8 +29,15 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        record: state.record.records
+        records: state.firestore.ordered.records
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {
+            collection: 'records'
+        }
+    ])
+)(Dashboard);
