@@ -9,6 +9,7 @@ import {
     MDBNavItem,
     MDBTabContent,
     MDBNav,
+    MDBBadge,
  } from "mdbreact";
 
 // Redux
@@ -19,12 +20,11 @@ import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
 
 // Dialogs (Modals)
-import CreateRecordDialog from './createRecordDialog'
 import CreateTabDialog from './createTabDialog'
 
 // Components
 import Tab from '../../molecules/Tab'
-import { TabDashboard, TabGeneric } from "../../organisms/Tabs"
+import TabDashboard from "../../organisms/Tabs/Dashboard"
 
 // Images
 import "./images.scss";
@@ -73,6 +73,9 @@ class Dashboard extends React.Component{
                 <div className="banner img-walking" ></div>
                 <div className="greeting text-center py-3">
                     <h2>Hallo Christian!</h2>
+                    <MDBBadge color="light">Basic</MDBBadge>
+                    <MDBBadge color="purple">Pro</MDBBadge>
+                    <MDBBadge color="warning">Ultimate<MDBIcon icon="crown" className="pl-2" /></MDBBadge>
                 </div>
                 <MDBContainer>
                     <div className="classic-tabs">
@@ -106,7 +109,10 @@ class Dashboard extends React.Component{
                                     console.log(this.state.activeItemClassicTabs1 === i)
                                     return(
                                         <Tab key={i} tabId={i}>
-                                            {/*<TabDashboard />*/}
+                                            {
+                                                i === 0 &&
+                                                <TabDashboard />
+                                            }
                                             <h2>Tab {i}</h2>
                                         </Tab>
                                     )
@@ -115,7 +121,6 @@ class Dashboard extends React.Component{
                         </MDBTabContent>
                     </div>
                 </MDBContainer>
-                <CreateRecordDialog />
             </div>
         )
     }
