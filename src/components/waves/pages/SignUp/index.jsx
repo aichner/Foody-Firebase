@@ -8,7 +8,10 @@ import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 //MDB
-import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact'
+import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody, MDBAlert, } from 'mdbreact'
+
+// Actions
+import { signUp } from '../../../../store/actions/authActions'
 
 class SignUp extends React.Component{
 
@@ -24,13 +27,25 @@ class SignUp extends React.Component{
     }
 
     handleSubmit = (e) => {
+        // Prevent page from reloading
         e.preventDefault();
-        console.log(this.state);
+        // Validation
+        e.target.className = "needs-validation was-validated";
+        // Check content
+        if(this.state.name !== "" && this.state.email !== "" && this.state.password !== "" && this.state.password2 !== ""){
+            if(this.state.password === this.state.password2){
+                // Create user
+                this.props.signUp(this.state)
+            }else {
+                console.log("Passwords do not match");
+            }
+        } else {
+            console.log("Fields empty");
+        }
     }
 
     render(){
         const { authError, auth } = this.props;
-
          /* Redirect to Dashboard
          * If user is already logged in, redirect to Dashboard
          */
@@ -47,8 +62,14 @@ class SignUp extends React.Component{
                             <MDBCardBody>
                                 <MDBRow className="justify-content-center">
                                     <MDBCol md="6">
-                                        <form onSubmit={this.handleSubmit}>
+                                        <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
                                             <p className="h4 text-center mb-4">Sign up</p>
+                                            {
+                                                authError && 
+                                                    <MDBAlert color="danger" >
+                                                        {authError}
+                                                    </MDBAlert>
+                                            }
                                             <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
                                             Your name
                                             </label>
@@ -58,7 +79,15 @@ class SignUp extends React.Component{
                                             id="defaultFormRegisterNameEx"
                                             className="form-control"
                                             onChange={this.handleChange}
+                                            value={this.state.name}
+                                            required
                                             />
+                                            <div className="invalid-feedback">
+                                                Please enter your full name
+                                            </div>
+                                            <div className="valid-feedback">
+                                                Wow! You've got a beautiful name ;)
+                                            </div>
                                             <br />
                                             <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
                                             Your email
@@ -69,7 +98,12 @@ class SignUp extends React.Component{
                                             id="defaultFormRegisterEmailEx"
                                             className="form-control"
                                             onChange={this.handleChange}
+                                            value={this.state.email}
+                                            required
                                             />
+                                            <div className="invalid-feedback">
+                                                Please enter your email
+                                            </div>
                                             <br />
                                             <label
                                             htmlFor="defaultFormRegisterPasswordEx"
@@ -83,6 +117,9 @@ class SignUp extends React.Component{
                                             id="defaultFormRegisterPasswordEx"
                                             className="form-control"
                                             onChange={this.handleChange}
+                                            value={this.state.password}
+                                            minLength="6"
+                                            required
                                             />
                                             <br />
                                             <label
@@ -97,6 +134,9 @@ class SignUp extends React.Component{
                                             id="defaultFormRegisterPasswordEx2"
                                             className="form-control"
                                             onChange={this.handleChange}
+                                            value={this.state.password2}
+                                            minLength="6"
+                                            required
                                             />
                                             <div className="text-center mt-4">
                                                 <MDBBtn color="success" type="submit">
@@ -124,4 +164,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(SignUp);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => dispatch(signUp(newUser))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

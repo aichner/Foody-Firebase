@@ -33,8 +33,11 @@ class SignIn extends React.Component {
     }
 
     handleSubmit = (e) => {
+        // Prevent page from reloading
         e.preventDefault();
+        // Validation
         e.target.className = "needs-validation was-validated";
+        // Sign user in
         this.props.signIn(this.state);
     }
 
