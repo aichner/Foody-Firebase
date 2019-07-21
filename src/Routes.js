@@ -14,7 +14,7 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={SignInPage} />
+        <Route exact path="/login" component={SignInPage} />
         <Route exact path="/day/:date" component={DayPage} />
         <Route exact path="/join" component={SignUpPage} />
         <Route exact path="/dashboard" component={DashboardPage} />

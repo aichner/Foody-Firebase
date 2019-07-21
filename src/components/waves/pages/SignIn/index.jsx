@@ -2,7 +2,7 @@
 import React from "react";
 
 // React router
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 // Redux
 import { connect } from 'react-redux'
@@ -39,7 +39,14 @@ class SignIn extends React.Component {
     }
 
     render() {
-        const { authError } = this.props;
+        const { authError, auth } = this.props;
+
+         /* Redirect to Dashboard
+         * If user is already logged in, redirect to Dashboard
+         * This doubles as a neat way to redirect the user directly after login
+         */
+        if(auth.uid !== undefined) return <Redirect to="/dashboard"/> 
+
         return (
         <div>
             <MDBEdgeHeader color="green lighten-3" />
@@ -107,7 +114,8 @@ class SignIn extends React.Component {
 const mapStateToProps = (state) => {
     return {
         authError: state.auth.authError,
-        authErrorDetails: state.auth.authErrorDetails
+        authErrorDetails: state.auth.authErrorDetails,
+        auth: state.firebase.auth
     }
 }
 

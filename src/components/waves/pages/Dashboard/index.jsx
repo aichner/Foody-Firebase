@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// React Router
+import { Redirect } from 'react-router-dom'
+
 // MDB
 import { 
     MDBContainer,
@@ -56,9 +59,13 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records, tabs } = this.props;
-        console.log(records);
-        console.log(tabs);
+        const { records, tabs, auth } = this.props;
+
+        /* Route Guarding
+         * If user is not logged in, redirect him/her to the login page
+         */
+        if(!auth.uid) return <Redirect to="/login"/> 
+
         return(
             <div className="foody">
                 <div className="banner img-walking" ></div>
@@ -120,7 +127,8 @@ class Dashboard extends React.Component{
 const mapStateToProps = (state) => {
     return {
         records: state.firestore.ordered.records,
-        tabs: state.firestore.ordered.tabs
+        tabs: state.firestore.ordered.tabs,
+        auth: state.firebase.auth
     }
 }
 

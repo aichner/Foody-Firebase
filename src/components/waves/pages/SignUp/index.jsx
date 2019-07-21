@@ -2,10 +2,13 @@
 import React from 'react'
 
 // React router
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+
+// Redux
+import { connect } from 'react-redux'
 
 //MDB
-import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact';
+import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody } from 'mdbreact'
 
 class SignUp extends React.Component{
 
@@ -26,6 +29,12 @@ class SignUp extends React.Component{
     }
 
     render(){
+        const { authError, auth } = this.props;
+
+         /* Redirect to Dashboard
+         * If user is already logged in, redirect to Dashboard
+         */
+        if(auth.uid !== undefined) return <Redirect to="/dashboard"/> 
         return(
             <div>
                 <MDBEdgeHeader color="green lighten-3" />
@@ -94,7 +103,7 @@ class SignUp extends React.Component{
                                                     <i className="fas fa-chevron-right pr-2"></i>Register
                                                 </MDBBtn>
                                             </div>
-                                            <p className="text-muted text-center mt-3">Already a member? <Link to="/" ><strong>Login</strong></Link></p>
+                                            <p className="text-muted text-center mt-3">Already a member? <Link to="/login" ><strong>Login</strong></Link></p>
                                         </form>
                                     </MDBCol>
                                 </MDBRow>
@@ -107,4 +116,12 @@ class SignUp extends React.Component{
     }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        authErrorDetails: state.auth.authErrorDetails,
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(SignUp);

@@ -4,6 +4,9 @@ import React from "react";
 // React router
 //import { Link } from 'react-router-dom'
 
+// Redux
+import { connect } from 'react-redux'
+
 // MDB
 import {
     MDBEdgeHeader,
@@ -18,22 +21,15 @@ import {
 import './upgrade.scss'
 
 class Upgrade extends React.Component {
-
     state = {
-        email: "",
-        password: ""
-    }
-
-    handleChange = (e) => {
-        this.setState({[e.target.type]: e.target.value})
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state);
+        isLogged: false,
     }
 
     render() {
+        const { auth } = this.props;
+        
+        if(auth.uid !== undefined) this.setState({isLogged: true});
+
         return (
         <div className="upgrade">
             <MDBEdgeHeader color="green lighten-3" />
@@ -158,4 +154,10 @@ class Upgrade extends React.Component {
     }
 }
 
-export default Upgrade;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps)(Upgrade);

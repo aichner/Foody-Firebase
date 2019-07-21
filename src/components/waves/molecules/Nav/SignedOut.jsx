@@ -40,6 +40,9 @@ class SignedOutNavItems extends React.Component{
                     >
                         <MDBNavbarNav right>
                             <MDBNavItem>
+                                <MDBNavLink to="/login"><i className="fas fa-sign-in-alt pr-2"></i>Login</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
                                 <MDBNavLink to="/upgrade"><i className="far fa-arrow-alt-circle-up pr-2"></i>Upgrade</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
