@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// Fade In Animation
+import FadeIn from 'react-fade-in'
+
 // React Router
 import { Redirect } from 'react-router-dom'
 
@@ -59,68 +62,85 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records, tabs, auth } = this.props;
+        const { records, tabs, auth, profile } = this.props;
 
         /* Route Guarding
          * If user is not logged in, redirect him/her to the login page
          */
         if(!auth.uid) return <Redirect to="/login"/> 
 
-        return(
-            <div className="foody">
-                <div className="banner img-walking" ></div>
-                <div className="greeting text-center py-3">
-                    <h2>Hallo Christian!</h2>
-                    <MDBBadge color="success">Basic</MDBBadge>
-                    <MDBBadge color="purple">Personal</MDBBadge>
-                    <MDBBadge color="warning">Family<MDBIcon icon="crown" className="pl-2" /></MDBBadge>
-                </div>
-                <MDBContainer>
-                    <div className="classic-tabs">
-                        <MDBNav classicTabs color="white">
-                        {
-                            tabs && tabs.map((tab, i) => {
-                                console.log(this.state.activeItemClassicTabs1 === i)
-                                return(
-                                    <MDBNavLink
-                                    key={i}
-                                    to="#"
-                                    
-                                    className={this.state.activeItemClassicTabs1 === i ? "font-weight-bold active green-text" : "font-weight-bold text-dark"}
-                                    onClick={this.toggleClassicTabs1(i)}
-                                    >
-                                        <MDBIcon icon={tab.icon} className="pr-2" />{tab.title}
-                                    </MDBNavLink>
-                                )
-                            })
-                        }
-                        <MDBNavItem>
-                            <CreateTabDialog />
-                        </MDBNavItem>
-                        </MDBNav>
-                        <MDBTabContent
-                        activeItem={this.state.activeItemClassicTabs1}
-                        className="pt-3"
-                        >
+        if(profile.tier !== undefined){
+            return(
+                <FadeIn>
+                <div className="foody">
+                    <div className="banner img-walking" ></div>
+                    <div className="greeting text-center py-3">
+                        <h2>Hallo {profile.first_name}!</h2>
+                        {(() => {
+                            // Conditionally render tier badge
+                            switch(profile.tier) {
+                            case 0:
+                                return <MDBBadge color="success">Basic</MDBBadge>;
+                            case 1:
+                                return <MDBBadge color="purple">Personal</MDBBadge>;
+                            case 2:
+                                return  <MDBBadge color="warning">Family<MDBIcon icon="crown" className="pl-2" /></MDBBadge>;
+                            default:
+                                return null;
+                            }
+                        })()}
+                    </div>
+                    <MDBContainer>
+                        <div className="classic-tabs">
+                            <MDBNav classicTabs color="white">
                             {
                                 tabs && tabs.map((tab, i) => {
                                     console.log(this.state.activeItemClassicTabs1 === i)
                                     return(
-                                        <Tab key={i} tabId={i}>
-                                            {
-                                                i === 0 &&
-                                                <TabDashboard />
-                                            }
-                                            <h2>Tab {i}</h2>
-                                        </Tab>
+                                        <MDBNavLink
+                                        key={i}
+                                        to="#"
+                                        
+                                        className={this.state.activeItemClassicTabs1 === i ? "font-weight-bold active green-text" : "font-weight-bold text-dark"}
+                                        onClick={this.toggleClassicTabs1(i)}
+                                        >
+                                            <MDBIcon icon={tab.icon} className="pr-2" />{tab.title}
+                                        </MDBNavLink>
                                     )
                                 })
                             }
-                        </MDBTabContent>
-                    </div>
-                </MDBContainer>
-            </div>
-        )
+                            <MDBNavItem>
+                                <CreateTabDialog />
+                            </MDBNavItem>
+                            </MDBNav>
+                            <MDBTabContent
+                            activeItem={this.state.activeItemClassicTabs1}
+                            className="pt-3"
+                            >
+                                {
+                                    tabs && tabs.map((tab, i) => {
+                                        console.log(this.state.activeItemClassicTabs1 === i)
+                                        return(
+                                            <Tab key={i} tabId={i}>
+                                                {
+                                                    tab.title === "Dashboard" &&
+                                                    <TabDashboard />
+                                                }
+                                                <h2>Tab {i}</h2>
+                                            </Tab>
+                                        )
+                                    })
+                                }
+                            </MDBTabContent>
+                        </div>
+                    </MDBContainer>
+                </div>
+                </FadeIn>
+            )
+        } else {
+            return null;
+        }
+        
     }
 }
 
@@ -128,7 +148,8 @@ const mapStateToProps = (state) => {
     return {
         records: state.firestore.ordered.records,
         tabs: state.firestore.ordered.tabs,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
     }
 }
 

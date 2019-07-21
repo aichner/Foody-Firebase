@@ -26,13 +26,15 @@ const store = createStore(rootReducer,
     compose(
         applyMiddleware(
             thunk.withExtraArgument({
-                getFirebase,
-                getFirestore
+                getFirebase, // Firebase
+                getFirestore // Cloud Database
             })
         ),
         reduxFirestore(fbInit),
         reactReduxFirebase(fbInit, {
-            attachAuthIsReady: true
+            useFirestoreForProfile: true, // Sync user data to user profile
+            userProfile: 'users', // Tell Redux Firebase where our users are stored
+            attachAuthIsReady: true // Enable firebase initializing before DOM rendering
         })
     )
 );
