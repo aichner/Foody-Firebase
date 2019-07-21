@@ -8,6 +8,7 @@ import SignInPage from './components/waves/pages/SignIn'
 import SignUpPage from './components/waves/pages/SignUp'
 import DayPage from './components/waves/pages/Day'
 import DashboardPage from './components/waves/pages/Dashboard'
+import UpgradePage from './components/waves/pages/Upgrade'
 
 class Routes extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Routes extends React.Component {
         <Route exact path="/day/:date" component={DayPage} />
         <Route exact path="/join" component={SignUpPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
+        <Route exact path="/upgrade" component={UpgradePage} />
         <Route
           render={function () {
             return <h1>Not Found</h1>;

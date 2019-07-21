@@ -73,9 +73,9 @@ class Dashboard extends React.Component{
                 <div className="banner img-walking" ></div>
                 <div className="greeting text-center py-3">
                     <h2>Hallo Christian!</h2>
-                    <MDBBadge color="light">Basic</MDBBadge>
-                    <MDBBadge color="purple">Pro</MDBBadge>
-                    <MDBBadge color="warning">Ultimate<MDBIcon icon="crown" className="pl-2" /></MDBBadge>
+                    <MDBBadge color="success">Basic</MDBBadge>
+                    <MDBBadge color="purple">Personal</MDBBadge>
+                    <MDBBadge color="warning">Family<MDBIcon icon="crown" className="pl-2" /></MDBBadge>
                 </div>
                 <MDBContainer>
                     <div className="classic-tabs">
