@@ -4,6 +4,12 @@ import React from "react";
 // React router
 import { Link } from 'react-router-dom'
 
+// Redux
+import { connect } from 'react-redux'
+
+// Actions
+import { signIn } from '../../../../store/actions/authActions'
+
 // MDB
 import {
     MDBEdgeHeader,
@@ -11,7 +17,8 @@ import {
     MDBCol,
     MDBRow,
     MDBCardBody,
-    MDBBtn
+    MDBBtn,
+    MDBAlert,
 } from "mdbreact";
 
 class SignIn extends React.Component {
@@ -27,10 +34,12 @@ class SignIn extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        e.target.className = "needs-validation was-validated";
+        this.props.signIn(this.state);
     }
 
     render() {
+        const { authError } = this.props;
         return (
         <div>
             <MDBEdgeHeader color="green lighten-3" />
@@ -43,8 +52,15 @@ class SignIn extends React.Component {
                         <MDBCardBody>
                             <MDBRow className="justify-content-center">
                                 <MDBCol md="6">
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
                                         <p className="h4 text-center mb-4">Sign in</p>
+                                        {
+                                            authError && 
+                                                <MDBAlert color="danger" >
+                                                    {authError}
+                                                </MDBAlert>
+                                        }
+                                        
                                         <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                                         Your email
                                         </label>
@@ -53,7 +69,11 @@ class SignIn extends React.Component {
                                         id="defaultFormLoginEmailEx"
                                         className="form-control"
                                         onChange={this.handleChange}
+                                        required
                                         />
+                                        <div className="invalid-feedback">
+                                            Please enter an E-Mail
+                                        </div>
                                         <br />
                                         <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
                                         Your password
@@ -63,7 +83,11 @@ class SignIn extends React.Component {
                                         id="defaultFormLoginPasswordEx"
                                         className="form-control"
                                         onChange={this.handleChange}
+                                        required
                                         />
+                                        <div className="invalid-feedback">
+                                            Please enter a password
+                                        </div>
                                         <div className="text-center mt-4">
                                             <MDBBtn color="success" type="submit"><i className="fas fa-key pr-2"></i>Login</MDBBtn>
                                         </div>
@@ -80,4 +104,17 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        authErrorDetails: state.auth.authErrorDetails
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -5,13 +5,15 @@ import React, { Component } from "react";
 import SignedInNavItems from './SignedIn'
 import SignedOutNavItems from './SignedOut'
 
-class Nav extends Component {
-  state = {
-    isLogged: false
-  };
+// Redux state
+import { connect } from 'react-redux'
 
+class Nav extends Component {
   render() {
-    if(this.state.isLogged){
+    const { auth } = this.props;
+
+    // Check if user is logged in (when auth.uid exists)
+    if(auth.uid){
       return (
         <SignedInNavItems/>
       );
@@ -23,4 +25,10 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(Nav);

@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// Redux
+import { connect } from 'react-redux'
+
 // MDB
 import {
     MDBNavbarNav,
@@ -15,6 +18,9 @@ import {
 // Components
 import Branding from './branding'
 
+// Actions
+import { signOut } from '../../../../store/actions/authActions'
+
 class SignedInNavItems extends React.Component{
     state = {
         isOpen: false
@@ -23,7 +29,6 @@ class SignedInNavItems extends React.Component{
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-
 
     render(){
         return(
@@ -43,7 +48,7 @@ class SignedInNavItems extends React.Component{
                                 <MDBNavLink to="/">Home</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/signout">Logout</MDBNavLink>
+                                <MDBNavLink to="/" onClick={this.props.signOut}>Logout</MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
@@ -53,4 +58,10 @@ class SignedInNavItems extends React.Component{
     }
 }
 
-export default SignedInNavItems;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => dispatch(signOut())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignedInNavItems);
