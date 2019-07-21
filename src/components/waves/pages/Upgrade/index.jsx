@@ -2,7 +2,7 @@
 import React from "react";
 
 // React router
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 
 // MDB
 import {
@@ -11,10 +11,7 @@ import {
     MDBCol,
     MDBRow,
     MDBCardBody,
-    MDBBtn,
     MDBCard,
-    MDBCardTitle,
-    MDBCardText,
 } from "mdbreact"
 
 // CSS

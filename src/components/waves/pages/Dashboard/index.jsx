@@ -32,15 +32,6 @@ import "./images.scss";
 // CSS
 import "./dashboard.scss";
 
-// Temp
-// Perks
-const c_perks_average = 80;
-const c_perks = [87, 50, 65, 78, 30, 15];
-const c_compare = [
-  [20,20,20,20,20,20],
-  [10,10,10,10,10,10]
-]
-
 class Dashboard extends React.Component{
     constructor(props) {
         super(props);

@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 // MDB
-import { MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCol } from "mdbreact";
 
 // Chart.js
 import { Chart, Line } from "react-chartjs-2";
@@ -154,15 +154,6 @@ class TabDashboard extends Component {
 
     componentWillMount(){
         Chart.plugins.register(zoom);
-    }
-    
-    // Start: Generic functions
-    calculateScore = () => {
-        let sum = 0;
-        for (var i = 0; i < this.props.c_perks.length; i++) {
-        sum += this.props.c_perks[i]
-        }
-        return Math.round(sum / this.props.c_perks.length);
     }
 
     toggle = tab => e => {

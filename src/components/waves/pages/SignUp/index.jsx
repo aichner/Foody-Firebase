@@ -94,7 +94,7 @@ class SignUp extends React.Component{
                                                     <i className="fas fa-chevron-right pr-2"></i>Register
                                                 </MDBBtn>
                                             </div>
-                                            <p className="text-muted text-center mt-3">Already a member? <Link to="/" >Login</Link></p>
+                                            <p className="text-muted text-center mt-3">Already a member? <Link to="/" ><strong>Login</strong></Link></p>
                                         </form>
                                     </MDBCol>
                                 </MDBRow>
