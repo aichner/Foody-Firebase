@@ -45,13 +45,13 @@ class Dashboard extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            activeItem: "1",
-            activeItemPills: "1",
-            activeItemVerticalPills: "1",
-            activeItemOuterTabs: "1",
-            activeItemInnerPills: "1",
-            activeItemClassicTabs1: "1",
-            activeItemClassicTabs2: "1"
+            activeItem: 0,
+            activeItemPills: 0,
+            activeItemVerticalPills: 0,
+            activeItemOuterTabs: 0,
+            activeItemInnerPills: 0,
+            activeItemClassicTabs1: 0,
+            activeItemClassicTabs2: 0
         }
     }
 
@@ -65,9 +65,9 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records } = this.props;
+        const { records, tabs } = this.props;
         console.log(records);
-
+        console.log(tabs);
         return(
             <div className="foody">
                 <div className="banner img-walking" ></div>
@@ -77,51 +77,22 @@ class Dashboard extends React.Component{
                 <MDBContainer>
                     <div className="classic-tabs">
                         <MDBNav classicTabs color="white">
-                        <MDBNavItem>
-                            <MDBNavLink
-                            to="#"
-                            className={this.state.activeItemClassicTabs1 === "0" ? "font-weight-bold active blue-text" : "font-weight-bold"}
-                            onClick={this.toggleClassicTabs1("0")}
-                            >
-                            <MDBIcon icon="columns" className="pr-2" />Dashboard
-                            </MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink
-                            to="#"
-                            className={this.state.activeItemClassicTabs1 === "1" ? "font-weight-bold active blue-text" : "font-weight-bold"}
-                            onClick={this.toggleClassicTabs1("1")}
-                            >
-                            <MDBIcon icon="utensils" className="pr-2" />Food
-                            </MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink
-                            to="#"
-                            className={this.state.activeItemClassicTabs1 === "2" ? "font-weight-bold active blue-text" : "font-weight-bold"}
-                            onClick={this.toggleClassicTabs1("2")}
-                            >
-                            <MDBIcon icon="clinic-medical" className="pr-2" />Feeling
-                            </MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink
-                            to="#"
-                            className={this.state.activeItemClassicTabs1 === "3" ? "font-weight-bold active blue-text" : "font-weight-bold"}
-                            onClick={this.toggleClassicTabs1("3")}
-                            >
-                            <MDBIcon icon="building" className="pr-2" />Work
-                            </MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink
-                            to="#"
-                            className={this.state.activeItemClassicTabs1 === "4" ? "font-weight-bold active blue-text" : "font-weight-bold"}
-                            onClick={this.toggleClassicTabs1("4")}
-                            >
-                            <MDBIcon icon="bed" className="pr-2" />Sleep
-                            </MDBNavLink>
-                        </MDBNavItem>
+                        {
+                            tabs && tabs.map((tab, i) => {
+                                console.log(this.state.activeItemClassicTabs1 === i)
+                                return(
+                                    <MDBNavLink
+                                    key={i}
+                                    to="#"
+                                    
+                                    className={this.state.activeItemClassicTabs1 === i ? "font-weight-bold active green-text" : "font-weight-bold text-dark"}
+                                    onClick={this.toggleClassicTabs1(i)}
+                                    >
+                                        <MDBIcon icon={tab.icon} className="pr-2" />{tab.title}
+                                    </MDBNavLink>
+                                )
+                            })
+                        }
                         <MDBNavItem>
                             <CreateTabDialog />
                         </MDBNavItem>
@@ -130,19 +101,17 @@ class Dashboard extends React.Component{
                         activeItem={this.state.activeItemClassicTabs1}
                         className="pt-3"
                         >
-                            <Tab tabId="0">
-                                {/*<TabDashboard />*/}
-                                <h2>Tab 1</h2>
-                            </Tab>
-                            <Tab tabId="1">
-                                <h2>Tab 2</h2>
-                            </Tab>
-                            <Tab tabId="2">
-                                <h2>Tab 3</h2>
-                            </Tab>
-                            <Tab tabId="3">
-                                <h2>Tab 4</h2>
-                            </Tab>
+                            {
+                                tabs && tabs.map((tab, i) => {
+                                    console.log(this.state.activeItemClassicTabs1 === i)
+                                    return(
+                                        <Tab key={i} tabId={i}>
+                                            {/*<TabDashboard />*/}
+                                            <h2>Tab {i}</h2>
+                                        </Tab>
+                                    )
+                                })
+                            }
                         </MDBTabContent>
                     </div>
                 </MDBContainer>
@@ -154,7 +123,8 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        records: state.firestore.ordered.records
+        records: state.firestore.ordered.records,
+        tabs: state.firestore.ordered.tabs
     }
 }
 
@@ -163,6 +133,9 @@ export default compose(
     firestoreConnect([
         {
             collection: 'records'
+        },
+        {
+            collection: 'tabs'
         }
     ])
 )(Dashboard);

@@ -4,6 +4,7 @@ export const createTab = (tab) => {
         const firestore = getFirestore();
         firestore.collection('tabs').add({
             ...tab,
+            editable: true,
             createdAt: new Date()
         }).then(() => {
             dispatch({ type: 'CREATE_TAB', tab });

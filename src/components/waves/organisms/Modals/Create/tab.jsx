@@ -15,7 +15,8 @@ import { createTab } from '../../../../../store/actions/tabActions'
 
 class CreateTab extends React.Component {
     state = {
-        title: ""
+        title: "",
+        icon: "leaf"
     }
 
     handleChange = (e) => {
