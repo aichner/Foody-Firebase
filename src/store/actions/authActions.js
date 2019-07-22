@@ -47,7 +47,10 @@ export const signUp = (newUser) => {
                 last_name: split_name[split_name.length - 1],
                 full_name: newUser.name,
                 initials: split_name[0].charAt(0) + split_name[split_name.length - 1].charAt(0),
-                tier: 0 // 0: Basic, 1: Personal, 2: Family
+                tier: 0, // 0: Basic, 1: Personal, 2: Family,
+                tabs: [
+                    {editable: false, icon: "columns", title: "Dashboard", createdAt: new Date()} // Initial Dashboard tab
+                ]
             })
         }).then(() => {
             dispatch({

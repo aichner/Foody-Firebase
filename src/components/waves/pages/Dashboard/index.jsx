@@ -62,7 +62,7 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records, tabs, auth, profile } = this.props;
+        const { records, auth, profile } = this.props;
 
         /* Route Guarding
          * If user is not logged in, redirect him/her to the login page
@@ -94,7 +94,7 @@ class Dashboard extends React.Component{
                         <div className="classic-tabs">
                             <MDBNav classicTabs color="white">
                             {
-                                tabs && tabs.map((tab, i) => {
+                                profile.tabs && profile.tabs.map((tab, i) => {
                                     return(
                                         <MDBNavLink
                                         key={i}
@@ -117,7 +117,7 @@ class Dashboard extends React.Component{
                             className="pt-3"
                             >
                                 {
-                                    tabs && tabs.map((tab, i) => {
+                                    profile.tabs && profile.tabs.map((tab, i) => {
                                         return(
                                             <Tab key={i} tabId={i}>
                                                 {
@@ -156,9 +156,6 @@ export default compose(
     firestoreConnect([
         {
             collection: 'records'
-        },
-        {
-            collection: 'tabs'
         }
     ])
 )(Dashboard);
