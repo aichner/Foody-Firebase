@@ -16,7 +16,8 @@ import { createTab } from '../../../../../store/actions/tabActions'
 class CreateTab extends React.Component {
     state = {
         title: "",
-        icon: "leaf"
+        icon: "leaf",
+        error: null
     }
 
     handleChange = (e) => {
@@ -25,12 +26,17 @@ class CreateTab extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.createTab(this.state);
+        if(this.state.title.trim() !== ""){
+            this.props.createTab(this.state);
+            this.setState({error: null}, () => this.props.onSendForm(this.state))
+        } else {
+            this.setState({error: "Please enter a name for your tab."}, () => this.props.onSendForm(this.state))
+        }
     }
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} autoComplete="off">
                 <label htmlFor="defaultFormTabTitle" className="grey-text">
                 Your tab name
                 </label>
