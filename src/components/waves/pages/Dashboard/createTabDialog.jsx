@@ -9,33 +9,51 @@ import {
     MDBModalHeader,
     MDBBtn,
     MDBIcon,
+    MDBAlert,
 } from 'mdbreact';
 
 // Components
 import CreateTab from '../../organisms/Modals/Create/tab'
 
 class CreateTabDialog extends React.Component{
-
-    state = {
-        modal: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            modal: false,
+            error: null
+        }
     }
     
     toggle = () => {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            error: null,
         });
+    }
+
+    onSendFormStatus = (tab) => {
+        if(!tab.error){
+            this.setState({error: null}, () => this.toggle());
+        } else {
+            this.setState({error: tab.error});
+        }
     }
 
     render(){
         return(
             <div>
-                <MDBBtn className="rounded-right shadow-none btn-add" size="sm" color="success" onClick={this.toggle} rounded outline><MDBIcon icon="plus" /></MDBBtn>
+                <MDBBtn className="shadow-none btn-add" size="sm" color="success" onClick={this.toggle} outline><MDBIcon icon="plus" /></MDBBtn>
                 {this.state.modal &&
                     <MDBContainer>
                         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                             <MDBModalHeader toggle={this.toggle}>Add Tab</MDBModalHeader>
                             <MDBModalBody>
-                                 <CreateTab/>
+                                {this.state.error &&
+                                    <MDBAlert color="danger">
+                                        {this.state.error}
+                                    </MDBAlert>
+                                }
+                                 <CreateTab onSendForm={this.onSendFormStatus}/>
                             </MDBModalBody>
                         </MDBModal>
                     </MDBContainer>

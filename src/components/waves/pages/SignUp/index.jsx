@@ -63,7 +63,7 @@ class SignUp extends React.Component{
                                 <MDBRow className="justify-content-center">
                                     <MDBCol md="6">
                                         <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
-                                            <p className="h4 text-center mb-4">Sign up</p>
+                                            <p className="h4 text-center mb-4">Start your journey</p>
                                             {
                                                 authError && 
                                                     <MDBAlert color="danger" >
@@ -140,7 +140,7 @@ class SignUp extends React.Component{
                                             />
                                             <div className="text-center mt-4">
                                                 <MDBBtn color="success" type="submit">
-                                                    <i className="fas fa-chevron-right pr-2"></i>Register
+                                                    <i className="fas fa-chevron-right pr-2"></i>Start your journey
                                                 </MDBBtn>
                                             </div>
                                             <p className="text-muted text-center mt-3">Already a member? <Link to="/login" ><strong>Login</strong></Link></p>

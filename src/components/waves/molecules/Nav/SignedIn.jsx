@@ -13,6 +13,7 @@ import {
     MDBNavbarToggler,
     MDBCollapse,
     MDBContainer,
+    MDBIcon,
 } from 'mdbreact';
 
 // Components
@@ -45,7 +46,10 @@ class SignedInNavItems extends React.Component{
                     >
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBNavLink to="/">Home</MDBNavLink>
+                                <MDBNavLink to="/dashboard"><MDBIcon icon="columns" className="pr-2" />Dashboard</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="/upgrade"><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to="/" onClick={this.props.signOut}>Logout</MDBNavLink>
