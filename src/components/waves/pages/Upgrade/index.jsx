@@ -44,7 +44,7 @@ class Upgrade extends React.Component {
                             md="4"
                             className="mx-auto float-none py-2 px-2"
                             >
-                                <MDBCard className={"pricing-card" + (profile.tier === 0 ? (" card-active ") : (" ")) + "active-basic"} style={{ width: "22rem" }}>
+                                <MDBCard className={"pricing-card" + (profile.tier === 0 ? (" card-active ") : (" ")) + "active-basic"} >
                                     
                                     <div className="price header white-text success-color rounded-top">
                                         <h2 className="number">0</h2>
@@ -78,9 +78,9 @@ class Upgrade extends React.Component {
                             </MDBCol>
                             <MDBCol
                             md="4"
-                            className="mx-auto float-none py-2 px-2"
+                            className="mx-auto float-none py-2 px-2 mt-sm"
                             >
-                                <MDBCard className={"pricing-card" + (profile.tier === 1 ? (" card-active ") : (" ")) + "active-personal"} style={{ width: "22rem" }}>
+                                <MDBCard className={"pricing-card" + (profile.tier === 1 ? (" card-active ") : (" ")) + "active-personal"}>
                                     
                                     <div className="price header white-text purple rounded-top">
                                         <h2 className="number">2,97</h2>
@@ -121,9 +121,9 @@ class Upgrade extends React.Component {
                             </MDBCol>
                             <MDBCol
                             md="4"
-                            className="mx-auto float-none py-2 px-2"
+                            className="mx-auto float-none py-2 px-2 mt-sm"
                             >
-                                <MDBCard className={"pricing-card" + (profile.tier === 2 ? (" card-active ") : (" ")) + "active-family"} style={{ width: "22rem" }}>
+                                <MDBCard className={"pricing-card" + (profile.tier === 2 ? (" card-active ") : (" ")) + "active-family"}>
                                     
                                     <div className="price header white-text warning-color rounded-top">
                                         <h2 className="number">9,99</h2>
