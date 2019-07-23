@@ -97,6 +97,9 @@ class Dashboard extends React.Component{
         });
     }
     verifyTabName = (title) => {
+        // Check if there are records on the tab (if not, no need for verification)
+
+        // Check if the entered title is the same as the tab title
         if(title.toLowerCase().trim() === this.state.deleteTabModalTitle.toLowerCase().trim()){
             return true;
         } else {
