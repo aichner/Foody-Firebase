@@ -42,7 +42,7 @@ class CreateTabDialog extends React.Component{
     render(){
         return(
             <div>
-                <MDBBtn className="rounded-right shadow-none btn-add" size="sm" color="success" onClick={this.toggle} rounded outline><MDBIcon icon="plus" /></MDBBtn>
+                <MDBBtn className="shadow-none btn-add" size="sm" color="success" onClick={this.toggle} outline><MDBIcon icon="plus" /></MDBBtn>
                 {this.state.modal &&
                     <MDBContainer>
                         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>

@@ -27,6 +27,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 
 // Dialogs (Modals)
 import CreateTabDialog from './createTabDialog'
+import UpgradeTabDialog from './upgradeTabDialog'
 
 // Components
 import Tab from '../../molecules/Tab'
@@ -122,10 +123,16 @@ class Dashboard extends React.Component{
                                     )
                                 })
                             }
-                            {profile.tabs.length <= tablimit &&
+                            {profile.tabs.length <= tablimit ? (
                                 <MDBNavItem>
                                     <CreateTabDialog />
                                 </MDBNavItem>
+                            ) : (
+                                <MDBNavItem>
+                                    <UpgradeTabDialog tier={profile.tier} />
+                                </MDBNavItem>
+                            )
+                                
                             }
                             
                             </MDBNav>

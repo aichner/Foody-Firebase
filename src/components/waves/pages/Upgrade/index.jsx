@@ -25,10 +25,12 @@ class Upgrade extends React.Component {
         isLogged: false,
     }
 
+    componentDidMount(){
+        if(this.props.auth.uid !== undefined) this.setState({isLogged: true});
+    }
+
     render() {
         const { auth } = this.props;
-        
-        if(auth.uid !== undefined) this.setState({isLogged: true});
 
         return (
         <div className="upgrade">
