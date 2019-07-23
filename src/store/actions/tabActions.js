@@ -43,6 +43,29 @@ export const createTab = (tab) => {
     }
 }
 
+export const deleteTab = (tab) => {
+     return (dispatch, getState, { getFirebase, getFirestore }) => {
+        // Make aync call to DB
+
+        // Get userId (to know where to add the new slot)
+        const userId = getState().firebase.auth.uid;
+        // Get current tabs
+        const currentTabs = getState().firebase.profile.tabs;
+
+        // Tabs without the deleted tab (will be replaced with old array)
+        let newArr = currentTabs.filter(obj => obj.title !== tab.title);
+
+        const firestore = getFirestore();
+        firestore.collection('users').doc(userId).update({
+            tabs: newArr
+        }).then(() => {
+            dispatch({ type: 'REMOVE_TAB', tab });
+        }).catch((err) => {
+            dispatch({ type: 'REMOVE_TAB_ERROR', err });
+        })
+    }
+}
+
 export const addTabSlot = (tab) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         // Make aync call to DB

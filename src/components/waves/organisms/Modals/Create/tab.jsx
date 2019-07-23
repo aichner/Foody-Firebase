@@ -17,6 +17,7 @@ class CreateTab extends React.Component {
     state = {
         title: "",
         icon: "leaf",
+        editable: true,
         error: null
     }
 

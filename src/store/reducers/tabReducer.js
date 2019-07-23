@@ -21,6 +21,12 @@ const tabReducer = (state = initState, action) => {
         case "ADD_TABSLOT_ERROR":
             console.log('increase tab slots error', action.err);
             return state;
+        case "REMOVE_TAB":
+            console.log('removed tab', action.tab);
+            return state;
+        case "REMOVE_TAB_ERROR":
+            console.log('removed tab error', action.err);
+            return state;
         default:
             return state;
     }

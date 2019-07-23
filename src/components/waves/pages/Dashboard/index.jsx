@@ -16,6 +16,13 @@ import {
     MDBTabContent,
     MDBNav,
     MDBBadge,
+    MDBBtn,
+    MDBPopover,
+    MDBPopoverBody,
+    MDBPopoverHeader,
+    MDBModal,
+    MDBModalBody,
+    MDBModalHeader,
  } from "mdbreact";
 
 // Redux
@@ -28,6 +35,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 // Dialogs (Modals)
 import CreateTabDialog from './createTabDialog'
 import UpgradeTabDialog from './upgradeTabDialog'
+import DeleteTabDialog from './deleteTabDialog'
 
 // Components
 import Tab from '../../molecules/Tab'
@@ -49,7 +57,8 @@ class Dashboard extends React.Component{
             activeItemOuterTabs: 0,
             activeItemInnerPills: 0,
             activeItemClassicTabs1: 0,
-            activeItemClassicTabs2: 0
+            activeItemClassicTabs2: 0,
+            deleteTabModal: false,
         }
     }
 
@@ -75,6 +84,19 @@ class Dashboard extends React.Component{
         }else{
             return defaultImage;
         }
+    }
+
+    // Delete Tab
+    toogleDeleteTabModal = () => {
+        this.setState({
+            deleteTabModal: !this.state.deleteTabModal
+        });
+    }
+    onDeleteTabStatus = () => {
+        // Close modal
+        this.toogleDeleteTabModal();
+        // Go to dashboard tab
+
     }
 
     render(){
@@ -147,11 +169,42 @@ class Dashboard extends React.Component{
                                     profile.tabs && profile.tabs.map((tab, i) => {
                                         return(
                                             <Tab key={i} tabId={i}>
+                                                {tab.editable &&
+                                                    <div className="tab-top">
+                                                        <MDBPopover
+                                                        placement="bottom"
+                                                        popover
+                                                        clickable
+                                                        id="popper1"
+                                                        >
+                                                        <MDBBtn color="white" rounded><MDBIcon icon="bars" /></MDBBtn>
+                                                        <div>
+                                                            <MDBPopoverHeader>{tab.title} Settings</MDBPopoverHeader>
+                                                            <MDBPopoverBody className="text-center">
+                                                                <MDBBtn color="elegant"><MDBIcon icon="edit" className="pr-2" />Edit</MDBBtn>
+                                                                <hr />
+                                                                <MDBBtn color="danger" size="md" outline rounded onClick={this.toogleDeleteTabModal}><MDBIcon icon="trash" className="pr-2" />Delete</MDBBtn>
+                                                                
+                                                            </MDBPopoverBody>
+                                                        </div>
+                                                        </MDBPopover>
+                                                        {this.state.deleteTabModal &&
+                                                        <MDBModal isOpen={this.state.deleteTabModal} toggle={this.toogleDeleteTabModal}>
+                                                            <MDBModalHeader toggle={this.toogleDeleteTabModal}>Unlock more tabs</MDBModalHeader>
+                                                            <MDBModalBody className="text-center">
+                                                                <MDBBtn color="elegant" outline onClick={this.toogleDeleteTabModal}>Cancel</MDBBtn>
+                                                                <DeleteTabDialog title={tab.title} onDeleteTab={this.onDeleteTabStatus} />
+                                                            </MDBModalBody>
+                                                        </MDBModal>
+                                                        }
+                                                    </div>
+                                                }
+                                                
+                                                <h2>Tab {i}</h2>
                                                 {
                                                     tab.title === "Dashboard" &&
                                                     <TabDashboard />
                                                 }
-                                                <h2>Tab {i}</h2>
                                             </Tab>
                                         )
                                     })

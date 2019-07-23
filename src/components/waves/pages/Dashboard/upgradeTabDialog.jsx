@@ -42,14 +42,6 @@ class CreateTabDialog extends React.Component{
         });
     }
 
-    onSendFormStatus = (tab) => {
-        if(!tab.error){
-            this.setState({error: null}, () => this.toggle());
-        } else {
-            this.setState({error: tab.error});
-        }
-    }
-
     render(){
         const { tier } = this.props;
         return(
