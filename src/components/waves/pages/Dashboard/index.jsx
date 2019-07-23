@@ -72,19 +72,6 @@ class Dashboard extends React.Component{
 
         // If user data fully loaded
         if(profile.tier !== undefined){
-            // Get how many tabs the user can have
-            let tablimit = 15;
-            switch (profile.tier) {
-                case 0:
-                    tablimit = 3;
-                    break;
-                case 1:
-                    tablimit = 10;
-                    break;
-                default:
-                    break;
-            }
-
             return(
                 <FadeIn>
                 <div className="foody">
@@ -123,7 +110,7 @@ class Dashboard extends React.Component{
                                     )
                                 })
                             }
-                            {profile.tabs.length <= tablimit ? (
+                            {profile.tabs.length < profile.tabSlots ? (
                                 <MDBNavItem>
                                     <CreateTabDialog />
                                 </MDBNavItem>

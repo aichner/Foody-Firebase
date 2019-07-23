@@ -4,6 +4,12 @@ import React from 'react'
 // React Router
 import { Link } from 'react-router-dom'
 
+// PayPal
+import { PayPalButton } from "react-paypal-button-v2";
+
+// Redux
+import { connect } from 'react-redux'
+
 // MDB
 import {
     MDBContainer,
@@ -16,15 +22,17 @@ import {
     MDBBadge,
 } from 'mdbreact';
 
-// Components
-import CreateTab from '../../organisms/Modals/Create/tab'
+// Actions
+import { addTabSlot } from '../../../../store/actions/tabActions'
 
 class CreateTabDialog extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
-            error: null
+            error: null,
+            name: "",
+            success: false
         }
     }
     
@@ -58,36 +66,73 @@ class CreateTabDialog extends React.Component{
                         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                             <MDBModalHeader toggle={this.toggle}>Unlock more tabs</MDBModalHeader>
                             <MDBModalBody className="text-center">
-                                {(function() {
-                                    switch(tier) {
-                                    case 0:
-                                        return (
-                                            <div>
-                                            <div className="price header white-text purple rounded-top">
-                                                <h2 className="number">2,97</h2>
-                                                <div className="version">
-                                                <h5 className="mb-0"><strong>Upgrade</strong> to Personal</h5>
-                                                
+                            {this.state.success ? (
+                                <MDBAlert color="success">
+                                    Thank you for purchasing an additional tab, {this.state.name}! You can use it right away!
+                                </MDBAlert>
+                            ) : (
+                                <div>
+                                    {(function() {
+                                        switch(tier) {
+                                        case 0:
+                                            return (
+                                                <div>
+                                                    <div className="price header white-text purple rounded-top">
+                                                        <h2 className="number">2,97</h2>
+                                                        <div className="version">
+                                                            <h5 className="mb-0"><strong>Upgrade</strong> to Personal</h5>
+                                                        </div>
+                                                        <p>Receive <strong>3</strong> additional tabs and <strong>exclusive features</strong>!</p>
+                                                        <Link to="/upgrade"><MDBBtn size="sm" color="white">Details</MDBBtn></Link>
+                                                        <br />
+                                                        <MDBBtn size="lg" color="success" rounded><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade now</MDBBtn>
+                                                    </div>
+                                                    <div className="w-100"><div className="splitter my-4"><span className="or"><span className="or-text">or</span></span></div></div>
                                                 </div>
-                                                <Link to="/upgrade"><MDBBtn size="sm" color="white" rounded>Details</MDBBtn></Link>
-                                                <br />
-                                                <MDBBtn color="success" rounded><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade now</MDBBtn>
+                                            )
+                                        case 1:
+                                            return (
+                                                <div>
+                                                    <div className="price header white-text warning-color rounded-top">
+                                                        <h2 className="number">9,99</h2>
+                                                        <div className="version">
+                                                        <h5 className="mb-0"><strong>Upgrade</strong> to Family</h5>
+                                                        
+                                                        </div>
+                                                        <Link to="/upgrade"><MDBBtn size="sm" color="white" rounded>Details</MDBBtn></Link>
+                                                        <br />
+                                                        <MDBBtn size="lg" color="success" rounded><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade now</MDBBtn>
+                                                    </div>
+                                                    <div className="w-100"><div className="splitter my-4"><span className="or"><span className="or-text">or</span></span></div></div>
+                                                </div>
+                                            )
+                                        default:
+                                            return null;
+                                        }
+                                    })()}
+                            
+                                    <div className="price header white-text primary-color rounded-top">
+                                        <h2 className="number-onetime">1,99</h2>
+                                        <div className="version">
+                                        <h5 className="mb-0"><strong>One-time</strong> purchase</h5>
+                                        
+                                        </div>
+                                        <p>Unlock one more tab</p>
+                                        <div className="row justify-content-center">
+                                            <div className="col-md-8 white">
+                                                <PayPalButton
+                                                    amount="1.99"
+                                                    currency="EUR"
+                                                    onSuccess={(details, data) => {
+                                                        this.setState({success: true, name: details.payer.name.given_name}, () => this.props.addTabSlot());
+                                                    }}
+                                                />
                                             </div>
-                                                <div className="w-100"><div className="splitter my-4"><span className="or"><span className="or-text">or</span></span></div></div>
-                                            </div>
-                                        )
-                                    case 1:
-                                        return (
-                                            <div>
-                                                <div className="w-100"><div className="splitter my-4"><span className="or"><span className="or-text">or</span></span></div></div>
-                                            </div>
-                                        )
-                                    default:
-                                        return null;
-                                    }
-                                })()}
-                                <h3>One-time purchase</h3>
-                                <h3><MDBBadge color="primary">1 additional tab</MDBBadge></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                )
+                            }
                             </MDBModalBody>
                         </MDBModal>
                     </MDBContainer>
@@ -97,4 +142,10 @@ class CreateTabDialog extends React.Component{
     }
 }
 
-export default CreateTabDialog;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTabSlot: () => dispatch(addTabSlot())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateTabDialog);

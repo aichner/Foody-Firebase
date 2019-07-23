@@ -55,7 +55,7 @@ class Upgrade extends React.Component {
                                         <p className="mt-2"><i className="fa fa-check green-text pr-2"></i>Unlimited Records</p>
                                     </li>
                                     <li>
-                                        <p><i className="fa fa-check green-text pr-2"></i>Up to <strong>3 tabs</strong></p>
+                                        <p><i className="fa fa-check green-text pr-2"></i>Receive <strong>3 tabs</strong></p>
                                     </li>
                                     <li>
                                         <p><i className="fa fa-times red-text pr-2"></i>Smart analysis</p>
@@ -92,7 +92,7 @@ class Upgrade extends React.Component {
                                         <p className="mt-2"><i className="fa fa-check green-text pr-2"></i>Unlimited Records</p>
                                     </li>
                                     <li>
-                                        <p><i className="fa fa-check green-text pr-2"></i>Up to <strong>10 tabs</strong></p>
+                                        <p><i className="fa fa-check green-text pr-2"></i>Receive <strong>3 additional tabs</strong></p>
                                     </li>
                                     <li>
                                         <p><i className="fa fa-check green-text pr-2"></i>Smart analysis</p>
@@ -130,7 +130,7 @@ class Upgrade extends React.Component {
                                         <p className="mt-2"><i className="fa fa-check green-text pr-2"></i>Unlimited Records</p>
                                     </li>
                                     <li>
-                                        <p><i className="fa fa-check green-text pr-2"></i>Up to <strong>10 tabs</strong></p>
+                                        <p><i className="fa fa-check green-text pr-2"></i>Receive <strong>6 additional tabs</strong></p>
                                     </li>
                                     <li>
                                         <p><i className="fa fa-check green-text pr-2"></i>Smart analysis</p>
