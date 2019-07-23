@@ -54,6 +54,25 @@
         padding-bottom: 3rem;
         text-align: right;
     }
+    .nav-link{
+        border-radius: 10em;
+        margin-left: .2rem;
+        margin-right: .2rem;
+    }
+    .tab-text-light{
+        color: white !important;
+        border: 2px white solid !important;
+        &.active{
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.42);
+        }
+    }
+    .tab-text-dark{
+        color: #212529 !important;
+        border: 2px #212529 solid !important;
+        &.active{
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.42);
+        }
+    }
 
     /* Unlock more tabs */
     .price {

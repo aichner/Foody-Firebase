@@ -96,7 +96,42 @@ class Dashboard extends React.Component{
         // Close modal
         this.toogleDeleteTabModal();
         // Go to dashboard tab
+        this.setState({
+            activeItem: 0,
+            activeItemPills: 0,
+            activeItemVerticalPills: 0,
+            activeItemOuterTabs: 0,
+            activeItemInnerPills: 0,
+            activeItemClassicTabs1: 0,
+            activeItemClassicTabs2: 0,
+        })
+    }
 
+    // Automatic tab text color
+    hexToRgb = (hex) => {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+    isDark = (color) => {
+        let r = this.hexToRgb(color).r;
+        let g = this.hexToRgb(color).g;
+        let b = this.hexToRgb(color).b;
+        let rgb = "rgb("+r+","+g+","+b+")";
+
+        let match = /rgb\((\d+).*?(\d+).*?(\d+)\)/.exec(rgb);
+        let result = ( match[1] & 255 )
+            + ( match[2] & 255 )
+            + ( match[3] & 255 )
+            < 3 * 256 / 1.2;
+        if(result){
+            return "tab-text-light";
+        } else {
+            return "tab-text-dark";
+        }
     }
 
     render(){
@@ -135,12 +170,13 @@ class Dashboard extends React.Component{
                             <MDBNav classicTabs color="white">
                             {
                                 profile.tabs && profile.tabs.map((tab, i) => {
+                                    console.log(tab);
                                     return(
                                         <MDBNavLink
                                         key={i}
                                         to="#"
-                                        
-                                        className={this.state.activeItemClassicTabs1 === i ? "font-weight-bold active green-text" : "font-weight-bold text-dark"}
+                                        style={{backgroundColor: tab.color}}
+                                        className={this.state.activeItemClassicTabs1 === i ? ("font-weight-bold active " + this.isDark(tab.color)) : ("font-weight-bold " + this.isDark(tab.color)) }
                                         onClick={this.toggleClassicTabs1(i)}
                                         >
                                             <MDBIcon icon={tab.icon} className="pr-2" />{tab.title}
