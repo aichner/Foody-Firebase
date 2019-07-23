@@ -32,7 +32,16 @@ class CreateTab extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if(this.state.title.trim() !== ""){
-            this.props.createTab(this.state);
+            // Remove overhead (this.state.error) that otherwise would end up in the DB
+            let cleaned = {
+                title: this.state.title,
+                icon: this.state.icon,
+                color: this.state.color,
+                editable: this.state.editable
+            }
+            // Call action
+            this.props.createTab(cleaned);
+            // Provide callback to parent
             this.setState({error: null}, () => this.props.onSendForm(this.state))
         } else {
             this.setState({error: "Please enter a name for your tab."}, () => this.props.onSendForm(this.state))
@@ -45,7 +54,6 @@ class CreateTab extends React.Component {
     };
 
     render(){
-        console.log(this.state);
         return(
             <form onSubmit={this.handleSubmit} autoComplete="off">
                 <label htmlFor="defaultFormTabTitle" className="grey-text">
@@ -57,6 +65,7 @@ class CreateTab extends React.Component {
                 id="defaultFormTabTitle"
                 className="form-control"
                 maxLength="20"
+                tabIndex="0"
                 value={this.state.title}
                 onChange={this.handleChange}
                 required

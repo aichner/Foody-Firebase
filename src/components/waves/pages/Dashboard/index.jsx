@@ -170,7 +170,6 @@ class Dashboard extends React.Component{
                             <MDBNav classicTabs color="white">
                             {
                                 profile.tabs && profile.tabs.map((tab, i) => {
-                                    console.log(tab);
                                     return(
                                         <MDBNavLink
                                         key={i}
@@ -226,7 +225,7 @@ class Dashboard extends React.Component{
                                                         </MDBPopover>
                                                         {this.state.deleteTabModal &&
                                                         <MDBModal isOpen={this.state.deleteTabModal} toggle={this.toogleDeleteTabModal}>
-                                                            <MDBModalHeader toggle={this.toogleDeleteTabModal}>Unlock more tabs</MDBModalHeader>
+                                                            <MDBModalHeader toggle={this.toogleDeleteTabModal}>Delete {tab.title}?</MDBModalHeader>
                                                             <MDBModalBody className="text-center">
                                                                 <MDBBtn color="elegant" outline onClick={this.toogleDeleteTabModal}>Cancel</MDBBtn>
                                                                 <DeleteTabDialog title={tab.title} onDeleteTab={this.onDeleteTabStatus} />
