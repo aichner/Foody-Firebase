@@ -61,6 +61,22 @@ class Dashboard extends React.Component{
         }
     }
 
+    getBanner = (sex) => {
+        let defaultImage = "img-default-1";
+        if(sex !== undefined){
+            switch(sex){
+                case 'male':
+                    return "img-male-1";
+                case 'female':
+                    return "img-female-1";
+                default:
+                    return defaultImage;
+            }
+        }else{
+            return defaultImage;
+        }
+    }
+
     render(){
         // Get records from Regex Reducer
         const { records, auth, profile } = this.props;
@@ -75,7 +91,7 @@ class Dashboard extends React.Component{
             return(
                 <FadeIn>
                 <div className="foody">
-                    <div className="banner img-walking" ></div>
+                    <div className={"banner "+this.getBanner(profile.sex)}></div>
                     <div className="greeting text-center py-3">
                         <h2>Hallo {profile.first_name}!</h2>
                         {(() => {
