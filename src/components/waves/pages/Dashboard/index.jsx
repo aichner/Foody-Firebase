@@ -59,6 +59,7 @@ class Dashboard extends React.Component{
             activeItemClassicTabs1: 0,
             activeItemClassicTabs2: 0,
             deleteTabModal: false,
+            deleteTabModalTitle: '',
         }
     }
 
@@ -88,9 +89,19 @@ class Dashboard extends React.Component{
 
     // Delete Tab
     toogleDeleteTabModal = () => {
+        // Close / open modal
+        // Unset verify tab name state
         this.setState({
-            deleteTabModal: !this.state.deleteTabModal
+            deleteTabModal: !this.state.deleteTabModal,
+            deleteTabModalTitle: '',
         });
+    }
+    verifyTabName = (title) => {
+        if(title.toLowerCase().trim() === this.state.deleteTabModalTitle.toLowerCase().trim()){
+            return true;
+        } else {
+            return false;
+        }
     }
     onDeleteTabStatus = () => {
         // Close modal
@@ -105,6 +116,8 @@ class Dashboard extends React.Component{
             activeItemClassicTabs1: 0,
             activeItemClassicTabs2: 0,
         })
+        // Unset verify tab name state
+        this.setState({deleteTabModalTitle: ''})
     }
 
     // Automatic tab text color
@@ -227,8 +240,11 @@ class Dashboard extends React.Component{
                                                         <MDBModal isOpen={this.state.deleteTabModal} toggle={this.toogleDeleteTabModal}>
                                                             <MDBModalHeader toggle={this.toogleDeleteTabModal}>Delete {tab.title}?</MDBModalHeader>
                                                             <MDBModalBody className="text-center">
+                                                                <p className="lead">All data of <strong>{tab.title}</strong> will be lost permanently!</p>
+                                                                <p className="text-muted">Please type in the name of the tab to confirm.</p>
+                                                                <input className="form-control mb-2" type="text" value={this.state.deleteTabModalTitle} onChange={(e) => {this.setState({deleteTabModalTitle: e.target.value})}} />
                                                                 <MDBBtn color="elegant" outline onClick={this.toogleDeleteTabModal}>Cancel</MDBBtn>
-                                                                <DeleteTabDialog title={tab.title} onDeleteTab={this.onDeleteTabStatus} />
+                                                                <DeleteTabDialog title={tab.title} onDeleteTab={this.onDeleteTabStatus} active={this.verifyTabName(tab.title)} />
                                                             </MDBModalBody>
                                                         </MDBModal>
                                                         }
