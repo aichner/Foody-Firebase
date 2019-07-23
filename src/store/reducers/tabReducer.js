@@ -1,4 +1,4 @@
-// Have initial state for when state is not reay to be passed
+// Have initial state for when state is not ready to be passed
 const initState = {}
 
 const tabReducer = (state = initState, action) => {
@@ -10,6 +10,9 @@ const tabReducer = (state = initState, action) => {
             console.log('create tab error', action.err);
             return state;
         case "CREATE_TAB_ERROR_DUPLICATE":
+            console.log('create tab error', action.err);
+            return state;
+        case "CREATE_TAB_ERROR_LIMIT":
             console.log('create tab error', action.err);
             return state;
         default:
