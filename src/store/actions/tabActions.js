@@ -21,19 +21,19 @@ export const createTab = (tab) => {
         let canCreate = true;
         switch(userTier) {
             case 0:
-                if(currentTabs.length === 3){ // Users of the tier 0 can create up to 3 tabs
+                if(currentTabs.length === 4){ // Users of the tier 0 can create up to 3 tabs (+Dashboard)
                     dispatch({ type: 'CREATE_TAB_ERROR_LIMIT', err: "Tab limit reached" });
                     canCreate = false;
                 }
                 break;
             case 1:
-                if(currentTabs.length === 10){ // Users of the tier 1 can create up to 10 tabs
+                if(currentTabs.length === 11){ // Users of the tier 1 can create up to 10 tabs (+Dashboard)
                     dispatch({ type: 'CREATE_TAB_ERROR_LIMIT', err: "Tab limit reached" });
                     canCreate = false;
                 }
                 break;
             case 2:
-                if(currentTabs.length === 15){ // Users of the tier 2 can create up to 15 tabs
+                if(currentTabs.length === 16){ // Users of the tier 2 can create up to 15 tabs (+Dashboard)
                     dispatch({ type: 'CREATE_TAB_ERROR_LIMIT', err: "Tab limit reached" });
                     canCreate = false;
                 }
