@@ -31,7 +31,7 @@ class Upgrade extends React.Component {
     }
 
     render() {
-        const { auth, profile } = this.props;
+        const { profile } = this.props;
 
         if(profile.tier !== undefined){
             return (

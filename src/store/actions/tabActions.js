@@ -14,6 +14,8 @@ export const createTab = (tab) => {
             if(ctab.title === tab.title){
                 dispatch({ type: 'CREATE_TAB_ERROR_DUPLICATE', err: "Duplicate" });
                 return true;
+            } else {
+                return false;
             }
         });
 
@@ -49,9 +51,7 @@ export const addTabSlot = (tab) => {
         const userId = getState().firebase.auth.uid;
         // Get user tab slots (how many slots he can make)
         const userTabSlots = getState().firebase.profile.tabSlots;
-        // Get current tabs (to not overwrite)
-        const currentTabs = getState().firebase.profile.tabs;
-
+        // Create the new value
         let newTabSlotsValue = userTabSlots + 1;
 
         const firestore = getFirestore();

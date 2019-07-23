@@ -19,7 +19,6 @@ import {
     MDBBtn,
     MDBIcon,
     MDBAlert,
-    MDBBadge,
 } from 'mdbreact';
 
 // Actions

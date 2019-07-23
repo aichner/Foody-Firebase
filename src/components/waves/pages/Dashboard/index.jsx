@@ -79,7 +79,7 @@ class Dashboard extends React.Component{
 
     render(){
         // Get records from Regex Reducer
-        const { records, auth, profile } = this.props;
+        const { auth, profile } = this.props;
 
         /* Route Guarding
          * If user is not logged in, redirect him/her to the login page
