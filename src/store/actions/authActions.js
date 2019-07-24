@@ -50,7 +50,7 @@ export const signUp = (newUser) => {
                 tier: 0, // 0: Basic, 1: Personal, 2: Family,
                 tabSlots: 4, // 3 tabs for basic program (+ Dashboard)
                 tabs: [
-                    {editable: false, icon: "columns", title: "Dashboard", createdAt: new Date()} // Initial Dashboard tab
+                    {editable: false, icon: "columns", title: "Dashboard", color: "#ffffff", createdAt: new Date()} // Initial Dashboard tab
                 ]
             })
         }).then(() => {

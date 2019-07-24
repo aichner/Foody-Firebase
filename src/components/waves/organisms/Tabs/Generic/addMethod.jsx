@@ -15,7 +15,7 @@ import {
 // Components
 //import CreateTab from '../../organisms/Modals/Create/tab'
 
-class TabGeneric extends React.Component{
+class AddMethod extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -27,10 +27,10 @@ class TabGeneric extends React.Component{
     render(){
         return(
             <div>
-                
+
             </div>
         )
     }
 }
 
-export default TabGeneric;
+export default AddMethod;

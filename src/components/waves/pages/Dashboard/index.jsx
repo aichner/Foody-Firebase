@@ -40,6 +40,7 @@ import DeleteTabDialog from './deleteTabDialog'
 // Components
 import Tab from '../../molecules/Tab'
 import TabDashboard from "../../organisms/Tabs/Dashboard"
+import TabGeneric from "../../organisms/Tabs/Generic"
 
 // Images
 import "./images.scss";
@@ -254,10 +255,13 @@ class Dashboard extends React.Component{
                                                     </div>
                                                 }
                                                 
-                                                <h2>Tab {i}</h2>
                                                 {
-                                                    tab.title === "Dashboard" &&
-                                                    <TabDashboard />
+                                                    tab.title === "Dashboard" ? (
+                                                        <TabDashboard />
+                                                    ) : (
+                                                        <TabGeneric />
+                                                    )
+                                                    
                                                 }
                                             </Tab>
                                         )
