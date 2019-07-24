@@ -233,7 +233,10 @@ class Dashboard extends React.Component{
                                                         <div>
                                                             <MDBPopoverHeader>{tab.title} Settings</MDBPopoverHeader>
                                                             <MDBPopoverBody className="text-center">
-                                                                <MDBBtn color="elegant"><MDBIcon icon="edit" className="pr-2" />Edit</MDBBtn>
+                                                                {tab.fields !== undefined &&
+                                                                <MDBBtn color="deep-orange"><MDBIcon icon="sitemap" className="pr-2" />Edit fields</MDBBtn>
+                                                                }
+                                                                <MDBBtn color="elegant"><MDBIcon icon="edit" className="pr-2" />Edit tab</MDBBtn>
                                                                 <hr />
                                                                 <MDBBtn color="danger" size="md" outline rounded onClick={this.toogleDeleteTabModal}><MDBIcon icon="trash" className="pr-2" />Delete</MDBBtn>
                                                                 
@@ -259,7 +262,7 @@ class Dashboard extends React.Component{
                                                     tab.title === "Dashboard" ? (
                                                         <TabDashboard />
                                                     ) : (
-                                                        <TabGeneric />
+                                                        <TabGeneric tab={tab} />
                                                     )
                                                     
                                                 }
