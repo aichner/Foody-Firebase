@@ -80,9 +80,16 @@ class DefFields extends React.Component{
             // Get position
             let pos = this.state.fielddialogs.map(function(e) { return e.field }).indexOf(value);
             // Update state
-            this.setState({
-                fielddialogs: update(this.state.fielddialogs, {[pos]: {status: {$set: 'set'}}})
-            }, () => console.log(this.state))
+            console.log(this.state.fielddialogs);
+            if(this.state.fielddialogs !== undefined) {
+                if(this.state.fielddialogs[pos] !== undefined){
+                    if(this.state.fielddialogs[pos].status !== undefined){
+                        this.setState({
+                            fielddialogs: update(this.state.fielddialogs, {[pos]: {status: {$set: 'set'}}})
+                        }, () => console.log("Field created", this.state))
+                    }
+                }
+            }    
         }
     }
 
