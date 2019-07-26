@@ -1,17 +1,6 @@
 // React
 import React from 'react'
 
-// MDB
-import {
-    MDBContainer,
-    MDBModal,
-    MDBModalBody,
-    MDBModalHeader,
-    MDBBtn,
-    MDBIcon,
-    MDBAlert,
-} from 'mdbreact';
-
 // Components
 //import CreateTab from '../../organisms/Modals/Create/tab'
 
@@ -26,27 +15,16 @@ class TabGeneric extends React.Component{
         }
     }
 
-   
     render(){
         const { tab } = this.props;
-        console.log(tab);
         // Check if fields are set
         if(tab.fields === undefined){
             return(
                 <DefFields />
             )
         } else {
-            return(
-                <div>
-                
-                </div>
-            )
+            return null;
         }
-        return(
-            <div>
-                
-            </div>
-        )
     }
 }
 
