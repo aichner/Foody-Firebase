@@ -4,6 +4,9 @@ import React from 'react'
 // React addons
 import update from 'react-addons-update'; // ES6
 
+// Redux
+import { connect } from 'react-redux'
+
 // MDB
 import {
     MDBBtn,
@@ -12,6 +15,9 @@ import {
 
 // Fade In Animation
 import FadeIn from 'react-fade-in'
+
+// Actions
+import { createFields } from '../../../../../store/actions/fieldActions'
 
 // Components
 //import CreateTab from '../../organisms/Modals/Create/tab'
@@ -42,7 +48,7 @@ class DefFields extends React.Component{
     addFieldDialog = () => {
         // Get current fields
         let fielddialogs = this.state.fielddialogs;
-        let newfield = { status: 'dialog', field: '', type: '', weight: '', required: false};
+        let newfield = { status: 'dialog', field: '', type: 'sel_num',  weight: '50', required: false};
         // Add new field to current fields
         fielddialogs.push(newfield);
         // Add current fields + new field to state
@@ -96,6 +102,13 @@ class DefFields extends React.Component{
         this.forceUpdate(); // This is as dirty as it gets! -> Should be avoided if possible!
     }
 
+    // Send fields
+    sendField = (pos) => {
+        let tabtitle = this.props.title;
+
+        this.props.createFields(tabtitle, {items: [this.state.fielddialogs[pos]]});
+    }
+
     // Add dialog
     addDialog = (e) => {
         // Receive field value of dialog
@@ -104,13 +117,18 @@ class DefFields extends React.Component{
             // Get position
             let pos = this.state.fielddialogs.map(function(e) { return e.field }).indexOf(value);
             // Update state
-            console.log(this.state.fielddialogs);
             if(this.state.fielddialogs !== undefined) {
-                if(this.state.fielddialogs[pos] !== undefined){
-                    if(this.state.fielddialogs[pos].status !== undefined){
-                        this.setState({
-                            fielddialogs: update(this.state.fielddialogs, {[pos]: {status: {$set: 'set'}}})
-                        }, () => console.log("Field created", this.state))
+                let dialog = this.state.fielddialogs[pos];
+                if(dialog !== undefined){
+                    // Check if name is empty
+                    if(dialog.field.trim() !== ""){
+                        if(dialog.status !== undefined){
+                            this.setState({
+                                fielddialogs: update(this.state.fielddialogs, {[pos]: {status: {$set: 'set'}}})
+                            }, () => this.sendField(pos))
+                        }
+                    } else {
+                        console.log("Title empty");
                     }
                 }
             }    
@@ -162,7 +180,6 @@ class DefFields extends React.Component{
     }
 
     render(){
-        console.log(this.state.fielddialogs);
         return(
             <div className="row">
                 <div className="col-md-12">
@@ -229,7 +246,7 @@ class DefFields extends React.Component{
                                                 <div className="col-md-6 text-left align-self-center">
                                                     <MDBBtn size="md" color="elegant" outline data={dialog.field} onClick={this.cancelDialog.bind(this)}><MDBIcon icon="minus" className="pr-2" />Cancel</MDBBtn>
                                                 </div>
-                                                {this.state.fielddialogs.length === 1 &&
+                                                {true &&
                                                     <div className="col-md-6 text-right">
                                                         <MDBBtn color="success" data={dialog.field} onClick={this.addDialog.bind(this)}><MDBIcon icon="save" className="pr-2" />Save</MDBBtn>
                                                     </div>
@@ -241,7 +258,6 @@ class DefFields extends React.Component{
                             } else {
                                 return null;
                             }
-                            
                         })}
                     </form>
                     <div className="row">
@@ -262,4 +278,10 @@ class DefFields extends React.Component{
     }
 }
 
-export default DefFields;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createFields: (tabtitle, fields) => dispatch(createFields(tabtitle, fields))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(DefFields);

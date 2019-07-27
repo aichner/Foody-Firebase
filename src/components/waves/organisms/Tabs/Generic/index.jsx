@@ -18,9 +18,9 @@ class TabGeneric extends React.Component{
     render(){
         const { tab } = this.props;
         // Check if fields are set
-        if(tab.fields === undefined){
+        if(true){
             return(
-                <DefFields />
+                <DefFields title={tab.title} />
             )
         } else {
             return null;

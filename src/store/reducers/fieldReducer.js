@@ -4,10 +4,10 @@ const initState = {}
 const fieldReducer = (state = initState, action) => {
     switch (action.type) {
         case "CREATE_FIELDS":
-            console.log('created tab', action.fields);
+            console.log('created field', action.fields);
             return state;
         case "CREATE_FIELDS_ERROR":
-            console.log('create tab error', action.err);
+            console.log('create field error', action.err);
             return state;
         default:
             return state;

@@ -13,7 +13,7 @@ import {
     MDBIcon,
 } from 'mdbreact';
 
-// Tabs
+// Actions
 import { createTab } from '../../../../../store/actions/tabActions'
 
 class CreateTab extends React.Component {
