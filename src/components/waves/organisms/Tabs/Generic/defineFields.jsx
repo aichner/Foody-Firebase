@@ -42,7 +42,7 @@ class DefFields extends React.Component{
     addFieldDialog = () => {
         // Get current fields
         let fielddialogs = this.state.fielddialogs;
-        let newfield = { status: 'dialog', field: '', type: '', weight: ''};
+        let newfield = { status: 'dialog', field: '', type: '', weight: '', required: false};
         // Add new field to current fields
         fielddialogs.push(newfield);
         // Add current fields + new field to state
@@ -67,6 +67,16 @@ class DefFields extends React.Component{
                     case 'type':
                         console.log('type');
                         newFields[index].type = e.target.value;
+                        this.setState({ fielddialogs: newFields });
+                        break;
+                    case 'weight':
+                        console.log('weight');
+                        newFields[index].weight = e.target.value;
+                        this.setState({ fielddialogs: newFields });
+                        break;
+                    case 'required':
+                        console.log('required');
+                        newFields[index].required = e.target.checked;
                         this.setState({ fielddialogs: newFields });
                         break;
                     default:
@@ -106,6 +116,45 @@ class DefFields extends React.Component{
             }    
         }
     }
+    addAllDialogs = () => {
+        // Get current items
+        const newFields = this.state.fielddialogs.slice();
+        // Set status of all items to "set"
+        newFields.map((e, i) => {
+            newFields[i].status = 'set';
+            return true;
+        })
+        // Write changes to state (this will also update the page)
+        this.setState({
+            fielddialogs: newFields
+        })
+    }
+
+    // Get unsaved items (to determine if "Save all" button should be shown)
+    existUnsaved = () => {
+        // Get current items
+        const newFields = this.state.fielddialogs.slice();
+        // Check if any items exist
+        if(newFields.length > 0){
+            // Number of unsaved
+            let unsaved = 0;
+            let elem = newFields.map((e, i) => {
+                if(e.status === 'dialog'){
+                    unsaved++;
+                    return {status: 'unsaved', key: i}; // Return key of unsaved items
+                } else {
+                    return {status: 'saved', key: i}; // Return key of saved items
+                }
+            })
+            if(unsaved > 0){
+                return {exists: true, elements: elem, amount: unsaved}; // There are unsaved elements
+            } else {
+                return {exists: false, elements: elem, amount: unsaved}; // There are no unsaved elements
+            }
+        } else {
+            return {exists: false, elements: null, amount: 0}; // There are no fields
+        }
+    }
 
     // Remove dialog
     removeDialog = (e) => {
@@ -116,7 +165,7 @@ class DefFields extends React.Component{
         console.log(this.state.fielddialogs);
         return(
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                     {this.state.fielddialogs.map((dialog, index) => {
                         if(dialog.status === 'set'){
                             return(
@@ -138,7 +187,7 @@ class DefFields extends React.Component{
                                     <FadeIn key={index}>
                                         <div className="card p-3 mb-3">
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                <div className="col-md-3 align-self-center">
                                                     <label>Field</label>
                                                     <input
                                                         type="text"
@@ -149,7 +198,7 @@ class DefFields extends React.Component{
                                                         className="form-control"
                                                     />
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div className="col-md-3 align-self-center">
                                                     <label>Type</label>
                                                     <select name="type" className="browser-default custom-select" index={index} onChange={this.handleChange.bind(this)} >
                                                         <option value="sel_num">Number</option>
@@ -157,14 +206,34 @@ class DefFields extends React.Component{
                                                         <option value="sel_checkbox">Checkbox</option>
                                                     </select>
                                                 </div>
+                                                <div className="col-md-3 align-self-center">
+                                                    <label>Weight</label>
+                                                    <input type="range" name="weight" value={dialog.weight} index={index} onChange={this.handleChange.bind(this)} className="custom-range" id="customRange1" />
+                                                </div>
+                                                <div className="col-md-3 align-self-center">
+                                                    <input
+                                                        className="form-check-input"
+                                                        id={"requiredCheck"+(index+1)}
+                                                        type="checkbox"
+                                                        name="required"
+                                                        index={index}
+                                                        value={dialog.required}
+                                                        onChange={this.handleChange.bind(this)}
+                                                    />
+                                                    <label className="form-check-label" htmlFor={"requiredCheck"+(index+1)}>
+                                                        Field required?
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 text-left align-self-center">
                                                     <MDBBtn size="md" color="elegant" outline data={dialog.field} onClick={this.cancelDialog.bind(this)}><MDBIcon icon="minus" className="pr-2" />Cancel</MDBBtn>
                                                 </div>
-                                                <div className="col-md-6 text-right">
-                                                    <MDBBtn color="deep-orange" data={dialog.field} onClick={this.addDialog.bind(this)}><MDBIcon icon="plus" className="pr-2" />Add</MDBBtn>
-                                                </div>
+                                                {this.state.fielddialogs.length === 1 &&
+                                                    <div className="col-md-6 text-right">
+                                                        <MDBBtn color="success" data={dialog.field} onClick={this.addDialog.bind(this)}><MDBIcon icon="save" className="pr-2" />Save</MDBBtn>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     </FadeIn>
@@ -175,8 +244,18 @@ class DefFields extends React.Component{
                             
                         })}
                     </form>
-                  
-                    <MDBBtn color="deep-orange" rounded onClick={this.addFieldDialog}><MDBIcon icon="sitemap" className="pr-2" />Add field</MDBBtn>
+                    <div className="row">
+                        <div className="col-6 text-left">
+                            <MDBBtn color="deep-orange" rounded onClick={this.addFieldDialog}><MDBIcon icon="sitemap" className="pr-2" />Add field</MDBBtn>
+                        </div>
+                        <div className="col-6 text-right">
+                            {(this.existUnsaved().exists && this.existUnsaved().amount > 1) &&                               
+                                <MDBBtn color="success" onClick={this.addAllDialogs.bind(this)}><MDBIcon icon="save" className="pr-2" />Save all</MDBBtn>                                
+                            }
+                        </div>
+                    </div>
+
+                    
                 </div>
             </div>
         )
