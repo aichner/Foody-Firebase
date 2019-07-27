@@ -53,13 +53,27 @@ class DefFields extends React.Component{
     handleChange = (e) => {
 
         let index = e.target.getAttribute('index');
+        let name = e.target.name;
 
-        this.setState(prevState => ({
-            fielddialogs: prevState.fielddialogs.map(
-                el => el.index === index ? { ...el, status: 'done' } : {...el, status: '2'}
-            )
-        }));
-        
+        const newFields = this.state.fielddialogs.slice();
+        if(newFields !== undefined){
+            if(index !== undefined){
+                switch(name){
+                    case 'field':
+                        console.log('field');
+                        newFields[index].field = e.target.value;
+                        this.setState({ fielddialogs: newFields });
+                        break;
+                    case 'type':
+                        console.log('type');
+                        newFields[index].type = e.target.value;
+                        this.setState({ fielddialogs: newFields });
+                        break;
+                    default:
+                        console.log("not known type of input");
+                }    
+            }
+        }
     }
 
     // Cancel dialog (remove object from state array)
@@ -99,6 +113,7 @@ class DefFields extends React.Component{
     }
 
     render(){
+        console.log(this.state.fielddialogs);
         return(
             <div className="row">
                 <div className="col-md-6">
@@ -129,11 +144,8 @@ class DefFields extends React.Component{
                                                         type="text"
                                                         name="field"
                                                         value={dialog.field}
-                                                        onChange={(e) => {
-                                                            const newPeople = this.state.fielddialogs.slice();
-                                                            newPeople[index].field = e.target.value;
-                                                            this.setState({ fielddialogs: newPeople });
-                                                        }}
+                                                        index={index}
+                                                        onChange={this.handleChange.bind(this)}
                                                         className="form-control"
                                                     />
                                                 </div>
