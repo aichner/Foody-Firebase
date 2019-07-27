@@ -2,6 +2,7 @@
 import authReducer from './authReducer'
 import recordReducer from './recordReducer'
 import tabReducer from './tabReducer'
+import fieldReducer from './fieldReducer'
 
 // Redux
 import { combineReducers } from 'redux'
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     record: recordReducer,
     tab: tabReducer,
+    fields: fieldReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer // Authentication
 })
