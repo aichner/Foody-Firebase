@@ -179,32 +179,10 @@ class DefFields extends React.Component{
         // To be added
     }
 
-    // Get ID of current tab
-    getTabID = () => {
-        let value = this.props.title;
-        return this.props.profile.tabs.map(function(e) { return e.title }).indexOf(value);
-    }
-
     render(){
-        const { profile } = this.props;
-        const tab = profile.tabs[this.getTabID()];
         return(
             <div className="row">
                 <div className="col-md-12">
-                    {tab.fields.length > 0 &&
-                        <div>
-                            {tab.fields.map((field, index) => {
-                                return(
-                                    <FadeIn key={index}>
-                                        <div>
-                                            {field.field}
-                                        </div>
-                                    </FadeIn>
-                                );
-                            })}
-                        </div>
-                    }
-                    
                     <form>
                         {this.state.fielddialogs.map((dialog, index) => {
                             if(dialog.status === 'dialog'){
@@ -286,16 +264,10 @@ class DefFields extends React.Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        profile: state.firebase.profile,
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         createFields: (tabtitle, fields) => dispatch(createFields(tabtitle, fields))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefFields);
+export default connect(null, mapDispatchToProps)(DefFields);
