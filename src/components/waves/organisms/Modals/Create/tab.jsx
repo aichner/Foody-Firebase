@@ -43,34 +43,45 @@ class CreateTab extends React.Component {
                 case 'sleep':
                     icons.push("bed");
                     break;
-                case 'food' || 'breakfast' || 'lunch' || 'dinner':
+                case 'food': 
+                case 'breakfast':
+                case 'lunch':
+                case 'dinner':
                     icons.push("utensils");
                     break;
                 case 'sex':
                     icons.push("heart");
                     break;
-                case 'sports' || 'activities':
+                case 'sports':
+                case 'activities':
                     icons.push("running");
                     break;
                 case 'workout':
                     icons.push("dumbbell");
                     break;
-                case 'money' || 'money spent':
+                case 'money':
+                case 'money spent':
                     icons.push("hand-holding-usd");
                     break;
                 case 'meditation':
                     icons.push("leaf");
                     break;
-                case 'school' || 'education' || 'university' || 'college':
+                case 'school':
+                case 'education':
+                case 'university':
+                case 'college':
                     icons.push("graduation-cap");
                     break;
                 case 'car':
                     icons.push("car");
                     break;
-                case 'hiking' || 'walk' || 'walking':
+                case 'hiking':
+                case 'walk':
+                case 'walking':
                     icons.push("hiking");
                     break;
-                case 'transportation' || 'transport':
+                case 'transportation':
+                case 'transport':
                     icons.push("bus");
                     break;
                 case 'shower':
@@ -79,7 +90,10 @@ class CreateTab extends React.Component {
                 case 'water':
                     icons.push("water");
                     break;
-                case 'shit' || 'toilet' || 'poo' || 'poop':
+                case 'shit':
+                case 'toilet':
+                case 'poo':
+                case 'poop':
                     icons.push("poo-storm");
                     break;
                 case 'coffee':
@@ -88,19 +102,32 @@ class CreateTab extends React.Component {
                 case 'tee':
                     icons.push("mug-hot");
                     break;
-                case 'sweets' || 'cookies' || 'chocolate':
+                case 'sweets':
+                case 'cookies':
+                case 'chocolate':
                     icons.push("coookie");
                     break;
-                case 'reading' || 'books' || 'read' || 'book':
+                case 'reading':
+                case 'books':
+                case 'read':
+                case 'book':
                     icons.push("book-open");
                     break;
                 case 'audible':
                     icons.push("audible");
                     break;
-                case 'cat' || 'meow' || 'mau' || 'miau' || 'maua':
+                case 'cat':
+                case 'meow':
+                case 'mau':
+                case 'miau':
+                case 'maua':
                     icons.push('cat');
                     break;
-                case 'dog' || 'wouf' || 'wuff' || 'wau' || 'wow':
+                case 'dog':
+                case 'wouf':
+                case 'wuff':
+                case 'wau':
+                case 'wow':
                     icons.push('dog');
                     break;
                 default:
@@ -115,7 +142,7 @@ class CreateTab extends React.Component {
         }
 
         // Set icon and send form
-        this.setState({icon: icons[0]}, () => this.sendForm())
+        this.setState({icon: icons[icons.length-1]}, () => this.sendForm())
     }
 
     sendForm = () => {
