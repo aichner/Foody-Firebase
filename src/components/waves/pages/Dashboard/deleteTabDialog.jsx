@@ -35,7 +35,7 @@ class DeleteTabDialog extends React.Component{
 
     render(){
         return(
-            <MDBBtn color="danger" onClick={this.initDelete}>Delete <strong>{this.props.title}</strong></MDBBtn>
+            <MDBBtn color="danger" onClick={this.initDelete} disabled={!this.props.active}>Delete <strong>{this.props.title}</strong></MDBBtn>
         )
     }
 }
