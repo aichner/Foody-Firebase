@@ -6,8 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
 
 // Components
-import Nav from './components/waves/molecules/Nav';
-import Footer from './components/waves/molecules/Footer';
+import { Nav, Footer } from './components/waves/molecules';
 
 class App extends Component {
   render() {
