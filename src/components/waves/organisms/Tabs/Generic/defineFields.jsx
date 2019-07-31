@@ -29,20 +29,7 @@ class DefFields extends React.Component{
             fielddialogs: [
 
             ],
-            fields: [
-                
-            ],
         }
-    }
-
-    addField = () => {
-        // Get current fields
-        let fields = this.state.fields;
-        let newfield = { type:"text", title:"Testfield" };
-        // Add new field to current fields
-        fields.push(newfield);
-        // Add current fields + new field to state
-        this.setState({fields: fields });
     }
 
     addFieldDialog = () => {
