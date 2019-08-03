@@ -12,7 +12,7 @@ import { PayPalButton } from 'react-paypal-button-v2';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { addTabSlot } from '../../../../store/actions/tabActions';
+import { addTabSlot } from '../../../store/actions/tabActions';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

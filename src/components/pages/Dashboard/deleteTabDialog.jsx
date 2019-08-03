@@ -6,7 +6,7 @@ import React from 'react';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { deleteTab } from '../../../../store/actions/tabActions';
+import { deleteTab } from '../../../store/actions/tabActions';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

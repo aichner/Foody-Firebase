@@ -15,7 +15,7 @@ import {
 
 //> Images
 // Logo
-import { ReactComponent as Logo } from "../../../../assets/logo.svg";
+import { ReactComponent as Logo } from "../../../assets/logo.svg";
 
 class Footer extends React.Component{
     render(){

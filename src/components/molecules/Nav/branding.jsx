@@ -4,7 +4,7 @@ import React from 'react';
 
 //> Images
 // Logo
-import { ReactComponent as Logo } from "../../../../assets/logo.svg";
+import { ReactComponent as Logo } from "../../../assets/logo.svg";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

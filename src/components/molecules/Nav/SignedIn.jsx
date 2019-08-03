@@ -23,7 +23,7 @@ import {
 import Branding from './branding';
 
 //> Redux actions
-import { signOut } from '../../../../store/actions/authActions';
+import { signOut } from '../../../store/actions/authActions';
 
 class SignedInNavItems extends React.Component{
     state = {

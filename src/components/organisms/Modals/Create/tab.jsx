@@ -6,7 +6,7 @@ import React from 'react';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { createTab } from '../../../../../store/actions/tabActions';
+import { createTab } from '../../../../store/actions/tabActions';
 
 //> Libraries
 // Color Picker

@@ -53,9 +53,6 @@ import {
 // Welcome images
 import "./images.scss";
 
-//> CSS
-import "./dashboard.scss";
-
 class Dashboard extends React.Component{
     constructor(props) {
         super(props);

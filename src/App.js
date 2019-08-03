@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
  * Nav: Global navigation bar
  * Footer: Global Footer
  */
-import { Nav, Footer } from './components/waves/molecules';
+import { Nav, Footer } from './components/molecules';
 // Routes
 import Routes from './Routes';
 

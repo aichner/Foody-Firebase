@@ -10,7 +10,7 @@ import FadeIn from 'react-fade-in';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { createFields } from '../../../../../store/actions/fieldActions';
+import { createFields } from '../../../../store/actions/fieldActions';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

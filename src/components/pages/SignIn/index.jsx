@@ -8,7 +8,7 @@ import { Link, Redirect } from 'react-router-dom';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { signIn } from '../../../../store/actions/authActions';
+import { signIn } from '../../../store/actions/authActions';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

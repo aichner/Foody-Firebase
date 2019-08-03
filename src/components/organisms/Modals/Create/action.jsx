@@ -6,7 +6,7 @@ import React from 'react';
 // Connect
 import { connect } from 'react-redux';
 // Actions
-import { createRecord } from '../../../../../store/actions/recordActions';
+import { createRecord } from '../../../../store/actions/recordActions';
 
 class CreateAction extends React.Component {
     state = {
