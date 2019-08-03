@@ -38,9 +38,8 @@ import UpgradeTabDialog from './upgradeTabDialog'
 import DeleteTabDialog from './deleteTabDialog'
 
 // Components
-import Tab from '../../molecules/Tab'
-import TabDashboard from "../../organisms/Tabs/Dashboard"
-import TabGeneric from "../../organisms/Tabs/Generic"
+import { Tab } from '../../molecules'
+import { TabDashboard, TabGeneric } from "../../organisms/Tabs"
 
 // Images
 import "./images.scss";

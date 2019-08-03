@@ -4,11 +4,13 @@ import React from 'react'
 import { Route, Switch } from "react-router-dom"
 
 // Pages
-import SignInPage from './components/waves/pages/SignIn'
-import SignUpPage from './components/waves/pages/SignUp'
-import DayPage from './components/waves/pages/Day'
-import DashboardPage from './components/waves/pages/Dashboard'
-import UpgradePage from './components/waves/pages/Upgrade'
+import {
+  SignInPage,
+  SignUpPage,
+  DayPage,
+  DashboardPage,
+  UpgradePage
+} from './components/waves/pages'
 
 class Routes extends React.Component {
   render() {

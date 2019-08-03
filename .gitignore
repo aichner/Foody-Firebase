@@ -14,6 +14,9 @@
 # production
 /build
 
+# MDB React Pro
+mdbreact-4.18.1.tgz
+
 # misc
 .DS_Store
 .env.local
