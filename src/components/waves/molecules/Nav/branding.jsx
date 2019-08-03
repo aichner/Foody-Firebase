@@ -29,3 +29,8 @@ class SignedInNavItems extends React.Component{
 }
 
 export default SignedInNavItems;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

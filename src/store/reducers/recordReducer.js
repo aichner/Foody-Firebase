@@ -21,3 +21,8 @@ const recordReducer = (state = initState, action) => {
 }
 
 export default recordReducer;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

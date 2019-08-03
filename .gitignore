@@ -27,3 +27,6 @@ mdbreact-4.18.1.tgz
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# SPDX-License-Identifier: (EUPL-1.2)
+# Copyright © 2019 Werbeagentur Christian Aichner

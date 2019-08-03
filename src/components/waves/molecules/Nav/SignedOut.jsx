@@ -54,3 +54,8 @@ class SignedOutNavItems extends React.Component{
 }
 
 export default SignedOutNavItems;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

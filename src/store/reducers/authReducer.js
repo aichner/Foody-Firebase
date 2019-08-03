@@ -43,3 +43,8 @@ const authReducer = (state = initState, action) => {
 }
 
 export default authReducer;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

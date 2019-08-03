@@ -54,3 +54,8 @@ const mapDispatchToProps = (dispatch) => {
 
 // No state, so null for first param
 export default connect(null, mapDispatchToProps)(CreateAction);
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

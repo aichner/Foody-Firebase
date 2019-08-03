@@ -44,3 +44,8 @@ store.firebaseAuthIsReady.then(() => {
     ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
     registerServiceWorker();
 })
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

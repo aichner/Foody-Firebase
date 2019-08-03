@@ -52,3 +52,8 @@ class Footer extends React.Component{
 }
 
 export default Footer;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

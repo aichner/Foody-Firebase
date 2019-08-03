@@ -64,3 +64,8 @@ class CreateTabDialog extends React.Component{
 }
 
 export default CreateTabDialog;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

@@ -33,3 +33,8 @@ const tabReducer = (state = initState, action) => {
 }
 
 export default tabReducer;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */
