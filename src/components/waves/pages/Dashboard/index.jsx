@@ -2,7 +2,7 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 // Animations
-import FadeIn from 'react-fade-in'
+import FadeIn from 'react-fade-in';
 // DOM bindings for React Router
 import { Redirect } from 'react-router-dom';
 

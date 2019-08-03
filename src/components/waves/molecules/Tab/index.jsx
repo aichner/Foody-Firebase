@@ -6,7 +6,7 @@ import React from 'react';
 // "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBTabPane
-} from "mdbreact";
+} from 'mdbreact';
 
 class Tab extends React.Component {
     render() {

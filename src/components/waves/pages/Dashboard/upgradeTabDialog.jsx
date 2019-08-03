@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 //> Libraries
 // PayPal
-import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalButton } from 'react-paypal-button-v2';
 
 //> Redux
 // Connect

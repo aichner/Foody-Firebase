@@ -18,7 +18,7 @@ import {
   DayPage,
   DashboardPage,
   UpgradePage
-} from './components/waves/pages'
+} from './components/waves/pages';
 
 class Routes extends React.Component {
   render() {
