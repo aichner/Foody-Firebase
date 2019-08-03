@@ -1,14 +1,19 @@
-// React
-import React, { Component } from 'react';
-
-// React Router
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// DOM bindings for React Router
 import { BrowserRouter as Router } from 'react-router-dom';
+
+//> Components
+/**
+ * Nav: Global navigation bar
+ * Footer: Global Footer
+ */
+import { Nav, Footer } from './components/waves/molecules';
+// Routes
 import Routes from './Routes';
 
-// Components
-import { Nav, Footer } from './components/waves/molecules';
-
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Router>

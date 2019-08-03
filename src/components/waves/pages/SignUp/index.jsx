@@ -1,17 +1,18 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Redirect and Link from Router
+import { Redirect,  Link } from 'react-router-dom';
 
-// React router
-import { Link, Redirect } from 'react-router-dom'
-
-// Redux
-import { connect } from 'react-redux'
-
-//MDB
-import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody, MDBAlert, } from 'mdbreact'
-
+//> Redux
+// Connect
+import { connect } from 'react-redux';
 // Actions
-import { signUp } from '../../../../store/actions/authActions'
+import { signUp } from '../../../../store/actions/authActions';
+
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
+import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody, MDBAlert, } from 'mdbreact';
 
 class SignUp extends React.Component{
 

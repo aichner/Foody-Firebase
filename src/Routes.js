@@ -1,9 +1,17 @@
-// React
-import React from 'react'
-// React Router
-import { Route, Switch } from "react-router-dom"
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// DOM bindings for React Router
+import { Route, Switch } from 'react-router-dom';
 
-// Pages
+//> Components
+/**
+ * SignInPage: Page for the login process
+ * SignUpPage: Page for the signup process
+ * DayPage: Display a single day and its events
+ * DashboardPage: Page for user to access Moody and its features
+ * UpgradePage: Page for checking the current package and upgrading
+ */
 import {
   SignInPage,
   SignUpPage,

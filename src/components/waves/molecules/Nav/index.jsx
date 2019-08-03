@@ -1,14 +1,17 @@
-// React
-import React, { Component } from "react";
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// Navitems
-import SignedInNavItems from './SignedIn'
-import SignedOutNavItems from './SignedOut'
+//> Components
+// NavItems when signed in
+import SignedInNavItems from './SignedIn';
+// NavItems when signed out
+import SignedOutNavItems from './SignedOut';
 
-// Redux state
-import { connect } from 'react-redux'
+//> Redux
+import { connect } from 'react-redux';
 
-class Nav extends Component {
+class Nav extends React.Component {
   render() {
     const { auth } = this.props;
 

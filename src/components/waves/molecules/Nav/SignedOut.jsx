@@ -1,7 +1,9 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBNavbarNav,
     MDBNavItem,
@@ -12,8 +14,9 @@ import {
     MDBContainer,
 } from 'mdbreact';
 
-// Components
-import Branding from './branding'
+//> Components
+// Branding information (Logo, Text, ...)
+import Branding from './branding';
 
 class SignedOutNavItems extends React.Component{
     state = {

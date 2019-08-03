@@ -1,10 +1,12 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
 // Actions
-import { createRecord } from '../../../../../store/actions/recordActions'
+import { createRecord } from '../../../../../store/actions/recordActions';
 
 class CreateAction extends React.Component {
     state = {

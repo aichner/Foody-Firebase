@@ -1,10 +1,12 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+import { connect } from 'react-redux';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBNavbarNav,
     MDBNavItem,
@@ -16,11 +18,12 @@ import {
     MDBIcon,
 } from 'mdbreact';
 
-// Components
-import Branding from './branding'
+//> Components
+// Branding information (Logo, Text, ...)
+import Branding from './branding';
 
-// Actions
-import { signOut } from '../../../../store/actions/authActions'
+//> Redux actions
+import { signOut } from '../../../../store/actions/authActions';
 
 class SignedInNavItems extends React.Component{
     state = {

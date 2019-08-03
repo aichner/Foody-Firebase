@@ -1,10 +1,11 @@
-// React
-import React from 'react'
-
-// React Router
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Redirect from Router
 import { Redirect } from 'react-router-dom'
 
-// Redux
+//> Redux
+// Connect
 import { connect } from 'react-redux'
 
 class Day extends React.Component{

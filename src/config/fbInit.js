@@ -1,4 +1,4 @@
-
+//> Firebase
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
@@ -6,8 +6,11 @@ import 'firebase/auth'
 // Import secret credentials
 import config from './fbConfig.js'
 
+// Init Firebase
 firebase.initializeApp(config);
-firebase.firestore(); // timestampsInSnapshots: true already enabled by default
+
+// timestampsInSnapshots: true already enabled by default
+firebase.firestore(); 
 
 export default firebase;
 

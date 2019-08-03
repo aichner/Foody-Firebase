@@ -1,16 +1,18 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// Redux
+//> Redux
+// Connect
 import { connect } from 'react-redux'
+// Actions
+import { deleteTab } from '../../../../store/actions/tabActions'
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBBtn,
 } from 'mdbreact';
-
-// Actions
-import { deleteTab } from '../../../../store/actions/tabActions'
 
 class DeleteTabDialog extends React.Component{
 

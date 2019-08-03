@@ -1,13 +1,15 @@
-// React
-import React from "react";
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Animations
+import FadeIn from 'react-fade-in';
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
 
-// Fade In Animation
-import FadeIn from 'react-fade-in'
-
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBEdgeHeader,
     MDBFreeBird,
@@ -16,10 +18,10 @@ import {
     MDBCardBody,
     MDBCard,
     MDBIcon,
-} from "mdbreact"
+} from 'mdbreact';
 
-// CSS
-import './upgrade.scss'
+//> CSS
+import './upgrade.scss';
 
 class Upgrade extends React.Component {
     state = {

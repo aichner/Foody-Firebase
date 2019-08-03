@@ -1,23 +1,23 @@
-// React
-import React from 'react'
-
-// React addons
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Addon (Update)
 import update from 'react-addons-update'; // ES6
+// Animations
+import FadeIn from 'react-fade-in';
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
+// Actions
+import { createFields } from '../../../../../store/actions/fieldActions';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBBtn,
     MDBIcon,
 } from 'mdbreact';
-
-// Fade In Animation
-import FadeIn from 'react-fade-in'
-
-// Actions
-import { createFields } from '../../../../../store/actions/fieldActions'
 
 // Components
 //import CreateTab from '../../organisms/Modals/Create/tab'

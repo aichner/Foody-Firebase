@@ -1,17 +1,19 @@
-// React
-import React from "react"
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// DOM bindings for React Router
+import { Link } from 'react-router-dom';
 
-// Router
-import { Link } from 'react-router-dom'
-
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
   MDBFooter,
   MDBRow,
   MDBCol,
   MDBContainer,
-} from 'mdbreact'
+} from 'mdbreact';
 
+//> Images
 // Logo
 import { ReactComponent as Logo } from "../../../../assets/logo.svg";
 

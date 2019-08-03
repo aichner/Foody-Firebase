@@ -1,15 +1,23 @@
-// React
-import React, { Component } from "react";
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// MDB
-import { MDBRow, MDBCol } from "mdbreact";
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
+import { 
+  MDBRow,
+  MDBCol
+} from 'mdbreact';
 
-// Chart.js
-import { Chart, Line } from "react-chartjs-2";
+//> Libraries
+// chart.js
+import { Chart, Line } from 'react-chartjs-2';
+// chart.js zoom plugin
 import zoom from 'chartjs-plugin-zoom';
 
-// Dialogs (Modals)
-import CreateRecordDialog from '../../../pages/Dashboard/createRecordDialog'
+//> Components
+// Create Record dialog (modal)
+import CreateRecordDialog from '../../../pages/Dashboard/createRecordDialog';
 
 function generateRandom(amount) {
   //** Amount = weeks */
@@ -144,7 +152,7 @@ const chart_score_options = {
   }
 }
 
-class TabDashboard extends Component {
+class TabDashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state={

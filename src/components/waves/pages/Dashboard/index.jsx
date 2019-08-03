@@ -1,13 +1,13 @@
-// React
-import React from 'react'
-
-// Fade In Animation
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Animations
 import FadeIn from 'react-fade-in'
+// DOM bindings for React Router
+import { Redirect } from 'react-router-dom';
 
-// React Router
-import { Redirect } from 'react-router-dom'
-
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import { 
     MDBContainer,
     MDBNavLink,
@@ -23,28 +23,37 @@ import {
     MDBModal,
     MDBModalBody,
     MDBModalHeader,
- } from "mdbreact";
+ } from 'mdbreact';
 
-// Redux
-import { connect } from 'react-redux'
-import { compose } from 'redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
+// Compose
+import { compose } from 'redux';
 
-// Firestore
-import { firestoreConnect } from 'react-redux-firebase'
+//> Firestore
+import { firestoreConnect } from 'react-redux-firebase';
 
-// Dialogs (Modals)
-import CreateTabDialog from './createTabDialog'
-import UpgradeTabDialog from './upgradeTabDialog'
-import DeleteTabDialog from './deleteTabDialog'
+//> Components
+// Create tab dialog
+import CreateTabDialog from './createTabDialog';
+// Upgrade tab dialog
+import UpgradeTabDialog from './upgradeTabDialog';
+// Delete tab dialog
+import DeleteTabDialog from './deleteTabDialog';
+// Tab component (where Dashboard and Generic are nested)
+import { Tab } from '../../molecules';
+// Tab components
+import { 
+    TabDashboard,
+    TabGeneric
+} from "../../organisms/Tabs";
 
-// Components
-import { Tab } from '../../molecules'
-import { TabDashboard, TabGeneric } from "../../organisms/Tabs"
-
-// Images
+//> Images
+// Welcome images
 import "./images.scss";
 
-// CSS
+//> CSS
 import "./dashboard.scss";
 
 class Dashboard extends React.Component{

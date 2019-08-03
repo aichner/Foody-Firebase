@@ -1,7 +1,14 @@
-import React, { Component } from "react";
-import { MDBTabPane } from "mdbreact";
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-class Tab extends Component {
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
+import {
+    MDBTabPane
+} from "mdbreact";
+
+class Tab extends React.Component {
     render() {
         return (
             <MDBTabPane tabId={this.props.tabId}>

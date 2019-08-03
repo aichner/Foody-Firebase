@@ -1,33 +1,61 @@
+//> React
+// Contains all the functionality necessary to define React components
 import React from "react"
-import ReactDOM from "react-dom"
-import "@fortawesome/fontawesome-free/css/all.min.css"
-import "bootstrap-css-only/css/bootstrap.min.css"
-import "mdbreact/dist/css/mdb.css"
-import "./index.css"
-import App from "./App"
+// This serves as an entry point to the DOM and server renderers for React
+import ReactDOM from 'react-dom';
+
+//> Font Awesome
+// Font Awesome is an awesome icon library
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+//> Bootstrap
+import "bootstrap-css-only/css/bootstrap.min.css";
+
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
+import "mdbreact/dist/css/mdb.css";
+
+//> CSS
+// Root SCSS file
+import "./index.scss";
+
+//> Components
+// Root component
+import App from "./App";
+
+//> Register Service Worker
 import registerServiceWorker from './registerServiceWorker';
 
-// Redux
-import { createStore, applyMiddleware, compose } from 'redux'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import rootReducer from './store/reducers/rootReducer'
+//> Redux
+// Store, Middleware, Compose
+import { createStore, applyMiddleware, compose } from 'redux';
+// Provider
+import { Provider } from 'react-redux';
+// Thunk
+import thunk from 'redux-thunk';
+// Reducer
+import rootReducer from './store/reducers/rootReducer';
 
-// Redux Firebase / Firestore
+//> Firestore
+// Firestore is the DB of Firebase
 import { reduxFirestore, getFirestore } from 'redux-firestore'
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 
+//> Firebase
+// React-Redux interface for Firebase
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 // Firebase config
 import fbInit from './config/fbInit'
 
-// Create Redux data-store and store it in store
-// Apply thunk middle ware
+/** 
+ * Create Redux data-store and store it in store
+ * Apply thunk middle ware
+ */
 const store = createStore(rootReducer,
     compose(
         applyMiddleware(
             thunk.withExtraArgument({
                 getFirebase, // Firebase
-                getFirestore // Cloud Database
+                getFirestore // Cloud DB
             })
         ),
         reduxFirestore(fbInit),
@@ -41,7 +69,13 @@ const store = createStore(rootReducer,
 
 // Wait until firebase is initialized, then render the DOM
 store.firebaseAuthIsReady.then(() => {
-    ReactDOM.render( <Provider store={store}><App /></Provider> , document.getElementById('root'));
+    // Render the DOM
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById('root')
+    );
     registerServiceWorker();
 })
 

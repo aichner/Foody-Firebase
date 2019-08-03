@@ -1,16 +1,21 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Link from Router
+import { Link } from 'react-router-dom';
 
-// React Router
-import { Link } from 'react-router-dom'
-
+//> Libraries
 // PayPal
 import { PayPalButton } from "react-paypal-button-v2";
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
+// Actions
+import { addTabSlot } from '../../../../store/actions/tabActions';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBContainer,
     MDBModal,
@@ -20,9 +25,6 @@ import {
     MDBIcon,
     MDBAlert,
 } from 'mdbreact';
-
-// Actions
-import { addTabSlot } from '../../../../store/actions/tabActions'
 
 class CreateTabDialog extends React.Component{
     constructor(props) {

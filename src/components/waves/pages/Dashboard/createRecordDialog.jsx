@@ -1,7 +1,9 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBContainer,
     MDBModal,
@@ -11,8 +13,9 @@ import {
     MDBBtn
 } from 'mdbreact';
 
-// Components
-import CreateAction from '../../organisms/Modals/Create/action'
+//> Components
+// Create action dialog (modal)
+import CreateAction from '../../organisms/Modals/Create/action';
 
 class CreateRecordDialog extends React.Component{
 

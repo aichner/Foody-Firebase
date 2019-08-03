@@ -1,17 +1,19 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Animations
+import FadeIn from 'react-fade-in';
+
+//> Redux
+// Connect
+import { connect } from 'react-redux';
+
+//> Components
+// Define fields dialog
+import DefFields from './defineFields';
 
 // Components
 //import CreateTab from '../../organisms/Modals/Create/tab'
-
-// Fade In Animation
-import FadeIn from 'react-fade-in'
-
-// Redux
-import { connect } from 'react-redux'
-
-// Forms
-import DefFields from './defineFields'
 
 class TabGeneric extends React.Component{
     constructor(props) {

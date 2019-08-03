@@ -1,16 +1,17 @@
-// React
-import React from "react";
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
+// Link and Redirect from Router
+import { Link, Redirect } from 'react-router-dom';
 
-// React router
-import { Link, Redirect } from 'react-router-dom'
-
-// Redux
-import { connect } from 'react-redux'
-
+//> Redux
+// Connect
+import { connect } from 'react-redux';
 // Actions
-import { signIn } from '../../../../store/actions/authActions'
+import { signIn } from '../../../../store/actions/authActions';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBEdgeHeader,
     MDBFreeBird,

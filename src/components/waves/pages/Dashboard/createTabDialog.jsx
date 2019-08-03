@@ -1,7 +1,9 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBContainer,
     MDBModal,
@@ -12,8 +14,9 @@ import {
     MDBAlert,
 } from 'mdbreact';
 
-// Components
-import CreateTab from '../../organisms/Modals/Create/tab'
+//> Components
+// Create tab dialog (modal)
+import CreateTab from '../../organisms/Modals/Create/tab';
 
 class CreateTabDialog extends React.Component{
     constructor(props) {

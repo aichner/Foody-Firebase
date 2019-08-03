@@ -1,20 +1,23 @@
-// React
-import React from 'react'
+//> React
+// Contains all the functionality necessary to define React components
+import React from 'react';
 
-// Redux
-import { connect } from 'react-redux'
+//> Redux
+// Connect
+import { connect } from 'react-redux';
+// Actions
+import { createTab } from '../../../../../store/actions/tabActions';
 
+//> Libraries
 // Color Picker
-import { CirclePicker } from 'react-color'
+import { CirclePicker } from 'react-color';
 
-// MDB
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBBtn,
     MDBIcon,
 } from 'mdbreact';
-
-// Actions
-import { createTab } from '../../../../../store/actions/tabActions'
 
 class CreateTab extends React.Component {
     state = {
