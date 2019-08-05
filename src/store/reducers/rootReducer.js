@@ -1,16 +1,20 @@
-// Reducers
+//> Reducers
+// Authentication
 import authReducer from './authReducer'
+// Adding records (legacy)
 import recordReducer from './recordReducer'
+// Manage tabs
 import tabReducer from './tabReducer'
+// Manage fields
 import fieldReducer from './fieldReducer'
 
-// Redux
+//> Redux
 import { combineReducers } from 'redux'
 
-// Firestore reducer
+//> Firestore reducer
 import { firestoreReducer } from 'redux-firestore'
 
-// Firebase reducer
+//> Firebase reducer
 import { firebaseReducer } from 'react-redux-firebase'
 
 const rootReducer = combineReducers({
@@ -23,3 +27,8 @@ const rootReducer = combineReducers({
 })
 
 export default rootReducer;
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */
