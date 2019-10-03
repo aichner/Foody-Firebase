@@ -13,15 +13,23 @@
         background-size: contain;
     }
 
-    .classic-tabs .nav li a.active{
-        border-bottom: 3px solid #2196f3;
-        color: #000;
+    .classic-tabs{
+        .nav{
+            overflow: visible;
+            li{
+                a{
+                    color: rgba(0, 0, 0, 0.8);
+                    font-size: 15px;
+                    &.active{
+                        border-bottom: 3px solid #2196f3;
+                        color: #000;
+                    }
+                }
+            }
+        }
     }
-    .classic-tabs .nav li a{
-        color: rgba(0, 0, 0, 0.8);
-        font-size: 15px;
 
-    }
+
 
     /* Contents of tabs - Blend it to the rest of the page */
     .tab-content{
@@ -62,8 +70,10 @@
     .tab-text-light{
         color: white !important;
         border: 2px white solid !important;
+        box-shadow: none;
         &.active{
             box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.42);
+            overflow: visivle;
         }
     }
     .tab-text-dark{
