@@ -53,6 +53,7 @@ class CreateTab extends React.Component {
                     icons.push("utensils");
                     break;
                 case 'sex':
+                case 'love':
                     icons.push("heart");
                     break;
                 case 'sports':
