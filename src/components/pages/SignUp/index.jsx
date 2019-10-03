@@ -12,11 +12,19 @@ import { signUp } from '../../../store/actions/authActions';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
-import { MDBRow, MDBCol, MDBBtn, MDBEdgeHeader, MDBFreeBird, MDBCardBody, MDBAlert, } from 'mdbreact';
+import { 
+    MDBRow, 
+    MDBCol, 
+    MDBBtn, 
+    MDBEdgeHeader, 
+    MDBFreeBird, 
+    MDBCardBody, 
+    MDBAlert, 
+} from 'mdbreact';
 
 class SignUp extends React.Component{
 
-   state = {
+    state = {
         name: "",
         email: "",
         password: "",
@@ -33,7 +41,12 @@ class SignUp extends React.Component{
         // Validation
         e.target.className = "needs-validation was-validated";
         // Check content
-        if(this.state.name !== "" && this.state.email !== "" && this.state.password !== "" && this.state.password2 !== ""){
+        if(
+            this.state.name !== "" && 
+            this.state.email !== "" && 
+            this.state.password !== "" && 
+            this.state.password2 !== ""
+        ){
             if(this.state.password === this.state.password2){
                 // Create user
                 this.props.signUp(this.state)
@@ -47,7 +60,7 @@ class SignUp extends React.Component{
 
     render(){
         const { authError, auth } = this.props;
-         /* Redirect to Dashboard
+        /* Redirect to Dashboard
          * If user is already logged in, redirect to Dashboard
          */
         if(auth.uid !== undefined) return <Redirect to="/dashboard"/> 
@@ -63,7 +76,11 @@ class SignUp extends React.Component{
                             <MDBCardBody>
                                 <MDBRow className="justify-content-center">
                                     <MDBCol md="6">
-                                        <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
+                                        <form 
+                                        onSubmit={this.handleSubmit} 
+                                        className="needs-validation"
+                                        noValidate
+                                        >
                                             <p className="h4 text-center mb-4">Start your journey</p>
                                             {
                                                 authError && 
@@ -141,10 +158,18 @@ class SignUp extends React.Component{
                                             />
                                             <div className="text-center mt-4">
                                                 <MDBBtn color="success" type="submit">
-                                                    <i className="fas fa-chevron-right pr-2"></i>Start your journey
+                                                    <i className="fas fa-chevron-right pr-2"></i>
+                                                    Start your journey
                                                 </MDBBtn>
                                             </div>
-                                            <p className="text-muted text-center mt-3">Already a member? <Link to="/login" ><strong>Login</strong></Link></p>
+                                            <p 
+                                            className="text-muted text-center mt-3"
+                                            >
+                                                Already a member? 
+                                                <Link to="/login" className="pl-1">
+                                                    <strong>Login</strong>
+                                                </Link>
+                                            </p>
                                         </form>
                                     </MDBCol>
                                 </MDBRow>

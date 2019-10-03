@@ -20,6 +20,7 @@ import {
     MDBCardBody,
     MDBBtn,
     MDBAlert,
+    MDBIcon,
 } from "mdbreact";
 
 class SignIn extends React.Component {
@@ -45,7 +46,7 @@ class SignIn extends React.Component {
     render() {
         const { authError, auth } = this.props;
 
-         /* Redirect to Dashboard
+        /* Redirect to Dashboard
          * If user is already logged in, redirect to Dashboard
          * This doubles as a neat way to redirect the user directly after login
          */
@@ -100,9 +101,17 @@ class SignIn extends React.Component {
                                             Please enter a password
                                         </div>
                                         <div className="text-center mt-4">
-                                            <MDBBtn color="success" type="submit"><i className="fas fa-key pr-2"></i>Login</MDBBtn>
+                                            <MDBBtn color="success" type="submit">
+                                                <MDBIcon icon="key" className="pr-2"/>
+                                                Login
+                                            </MDBBtn>
                                         </div>
-                                        <p className="text-muted text-center mt-3">Not a member yet? No problem, just <Link to="/join"><strong>join us</strong></Link>!</p>
+                                        <p className="text-muted text-center mt-3">
+                                            Not a member yet? No problem, just 
+                                            <Link to="/join" className="pl-1">
+                                                <strong>join us</strong>
+                                            </Link>!
+                                        </p>
                                     </form>
                                 </MDBCol>
                             </MDBRow>
