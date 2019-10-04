@@ -1,6 +1,8 @@
 //> React
 // Contains all the functionality necessary to define React components
 import React from 'react';
+// Link and Redirect from Router
+import { Link } from 'react-router-dom';
 
 //> Redux
 import { connect } from 'react-redux';
@@ -53,10 +55,14 @@ class SignedInNavItems extends React.Component{
                     >
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBNavLink to="/dashboard"><MDBIcon icon="columns" className="pr-2" />Dashboard</MDBNavLink>
+                                <MDBNavLink to="/dashboard">
+                                    <MDBIcon icon="columns" className="pr-2" />Dashboard
+                                </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/upgrade"><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade</MDBNavLink>
+                                <MDBNavLink to="/upgrade">
+                                    <MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade
+                                </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -64,8 +70,13 @@ class SignedInNavItems extends React.Component{
                                         <MDBIcon far icon="user-circle" />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-success">
-                                    <MDBDropdownItem to="/settings">Preferences</MDBDropdownItem>
-                                    <MDBDropdownItem onClick={this.props.signOut}>Logout</MDBDropdownItem>
+                                    <MDBDropdownItem href="/settings">
+                                        <MDBIcon icon="cogs" className="pr-2" />Preferences
+                                    </MDBDropdownItem>
+                                    <MDBDropdownItem divider/>
+                                    <MDBDropdownItem onClick={this.props.signOut}>
+                                        <MDBIcon icon="sign-out-alt" className="pr-2" />Logout
+                                    </MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
