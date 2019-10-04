@@ -16,6 +16,10 @@ import {
     MDBCollapse,
     MDBContainer,
     MDBIcon,
+    MDBDropdown,
+    MDBDropdownItem,
+    MDBDropdownMenu,
+    MDBDropdownToggle,
 } from 'mdbreact';
 
 //> Components
@@ -55,7 +59,15 @@ class SignedInNavItems extends React.Component{
                                 <MDBNavLink to="/upgrade"><MDBIcon icon="arrow-alt-circle-up" className="pr-2" />Upgrade</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/" onClick={this.props.signOut}>Logout</MDBNavLink>
+                                <MDBDropdown>
+                                    <MDBDropdownToggle nav caret>
+                                        <MDBIcon far icon="user-circle" />
+                                    </MDBDropdownToggle>
+                                    <MDBDropdownMenu className="dropdown-success">
+                                    <MDBDropdownItem to="/settings">Preferences</MDBDropdownItem>
+                                    <MDBDropdownItem onClick={this.props.signOut}>Logout</MDBDropdownItem>
+                                    </MDBDropdownMenu>
+                                </MDBDropdown>
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
