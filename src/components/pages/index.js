@@ -5,13 +5,15 @@ import DayPage from './Day';
 import SignInPage from './SignIn';
 import SignUpPage from './SignUp';
 import UpgradePage from './Upgrade';
+import SettingsPage from './Settings';
 
 export {
     DashboardPage,
     DayPage,
     SignInPage,
     SignUpPage,
-    UpgradePage
+    UpgradePage,
+    SettingsPage,
 }
 
 /** 

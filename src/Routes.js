@@ -17,7 +17,8 @@ import {
   SignUpPage,
   DayPage,
   DashboardPage,
-  UpgradePage
+  UpgradePage,
+  SettingsPage,
 } from './components/pages';
 
 class Routes extends React.Component {
@@ -29,6 +30,7 @@ class Routes extends React.Component {
         <Route exact path="/join" component={SignUpPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/upgrade" component={UpgradePage} />
+        <Route exact path="/settings" component={SettingsPage} />
         <Route
           render={function () {
             return <h1>Not Found</h1>;
